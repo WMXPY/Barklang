@@ -9,14 +9,66 @@ describe('test AST generater', (): void => {
 
     beforeEach(() => {
         testCode = '\
-            var a 1\
-            return a\
+            var a 1\r\n\
+            a = \'test\'\n\
+            a = 3\r\
+            return a\r\
         ';
     });
 
     it('init', (): void => {
         const testAST: TAst = ast(testCode);
-        expect(testCode).to.be.equal(testCode);
+        const expectedAST: TAst = [
+            {
+                val: 'a',
+                type: 'assign',
+                args: [
+                    {
+                        type: 'num',
+                        va: 1,
+                    },
+                ],
+            },
+            {
+                val: 'a',
+                type: 'assign',
+                args: [
+                    {
+                        type: 'exp',
+                        va: '=',
+                    },
+                    {
+                        type: 'str',
+                        va: 'test',
+                    },
+                ],
+            },
+            {
+                val: 'a',
+                type: 'assign',
+                args: [
+                    {
+                        type: 'exp',
+                        va: '=',
+                    },
+                    {
+                        type: 'num',
+                        va: 3,
+                    },
+                ],
+            },
+            {
+                val: 'return',
+                type: 'command',
+                args: [
+                    {
+                        type: 'var',
+                        va: 'a',
+                    },
+                ],
+            },
+        ];
+        expect(testAST).to.be.deep.equal(expectedAST);
     });
 
 });

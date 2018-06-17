@@ -2,17 +2,69 @@
  * @fileoverview parse code string to ast tree
  */
 
-import TAst, { IAs } from '../types/ast';
+import TAst, {
+    IArgs,
+    IAs,
+    TType,
+} from '../types/ast';
+
+const parseArg = (arg: string): IArgs => {
+    if (/^'([A-Z]|[a-z])([A-Z]|[a-z]|[1-9])*'$/.test(arg)) {
+        return {
+            type: 'str',
+            va: arg.substring(1, arg.length - 1),
+        };
+    } else if (/^([A-Z]|[a-z])([A-Z]|[a-z]|[1-9])*$/.test(arg)) {
+        return {
+            type: 'var',
+            va: arg,
+        };
+    } else if (/^[1-9]+(.[1-9]+)?$/.test(arg)) {
+        return {
+            type: 'num',
+            va: parseFloat(arg),
+        };
+    } else if (/^=|\+|-|\*|\/$/.test(arg)) {
+        return {
+            type: 'exp',
+            va: arg,
+        };
+    } else {
+        return {
+            type: 'err',
+            va: arg,
+        };
+    }
+};
 
 const ast = (code: string): TAst => {
     const splited = code.split(/\r\n|\r|\n/).filter((line: string) => Boolean(line.trim()));
+    const vars: string[] = [];
+
     return splited.map((value: string): IAs => {
         const dots: string[] = value.split(' ').map((dot: string) => dot.trim()).filter((dot: string) => Boolean(dot));
-        const command: string = dots.shift() || 'skip';
+        let command: string = dots.shift() || 'skip';
+        let type: TType;
+
+        if (command === 'var') {
+            let testShift = dots.shift();
+            if (testShift) {
+                command = testShift;
+                vars.push(command);
+            } else {
+                command = 'error';
+            }
+            type = 'assign';
+        } else if (vars.indexOf(command) !== -1) {
+            type = 'assign';
+        } else {
+            type = 'command';
+        }
+
         return {
-            type: 'assign',
-            command,
-            args: dots,
+            type,
+            val: command,
+            args: dots.map(parseArg),
         };
     });
 };

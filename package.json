@@ -7,7 +7,6 @@
         "build": "tsc",
         "start": "tsc&&node dist/index.js",
         "hint": "ghoti post -a node-normal",
-        "postinstall": "ghoti post -a node-normal",
         "test": "mocha"
     },
     "main": "dist/index.js",
