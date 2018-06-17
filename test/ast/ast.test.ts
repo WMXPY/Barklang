@@ -1,3 +1,7 @@
+/**
+ * @fileoverview test ast generate
+ */
+
 import { expect } from 'chai';
 
 import ast from '../../src/ast/ast';
