@@ -6,7 +6,7 @@
 npm install
 ```
 
-### Devlopment, Test and Build
+### Development, Test and Build
 
 ```bash
 npm start

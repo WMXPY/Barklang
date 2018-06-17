@@ -28,7 +28,7 @@ The above lang shall return 15
 print '150'
 ```
 
-The above lang shall log '150' in console
+The above lang shall log '150' in the console.
 
 ### External function
 
@@ -36,4 +36,30 @@ The above lang shall log '150' in console
 someFunction 15
 ```
 
-The above lang shall call someFunction(15) in javascript
+The above lang shall call someFunction(15) in javascript.
+
+## Error
+
+bkc function will throw error global when one occurd if you are running code from an untrusted user, you can use try catch block response to them
+
+```js
+import bkc from 'bkc';
+// es5
+const bkc = require('bkc').default;
+
+bkc("hahaha 'hello world!'"); // command is not defined exception
+```
+
+Use try catch block
+
+```js
+import bkc from 'bkc';
+// es5
+const bkc = require('bkc').default;
+
+try {
+    bkc("hahaha 'hello world!'"); // ~~~
+}catch(err){
+    console.log(err); // command is not defined exception
+}
+```
