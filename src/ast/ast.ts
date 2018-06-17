@@ -9,22 +9,27 @@ import TAst, {
 } from '../types/ast';
 
 const parseArg = (arg: string): IArgs => {
-    if (/^'([A-Z]|[a-z])([A-Z]|[a-z]|[1-9])*'$/.test(arg)) {
+    const regExpString: RegExp = /^'([A-Z]|[a-z])([A-Z]|[a-z]|[1-9])*'$/;
+    const regExpVariable: RegExp = /^([A-Z]|[a-z])([A-Z]|[a-z]|[1-9])*$/;
+    const regExpNumber: RegExp = /^[1-9]+(.[1-9]+)?$/;
+    const regExpExpression: RegExp = /^=|\+|-|\*|\/$/;
+
+    if (regExpString.test(arg)) {
         return {
             type: 'str',
             va: arg.substring(1, arg.length - 1),
         };
-    } else if (/^([A-Z]|[a-z])([A-Z]|[a-z]|[1-9])*$/.test(arg)) {
+    } else if (regExpVariable.test(arg)) {
         return {
             type: 'var',
             va: arg,
         };
-    } else if (/^[1-9]+(.[1-9]+)?$/.test(arg)) {
+    } else if (regExpNumber.test(arg)) {
         return {
             type: 'num',
             va: parseFloat(arg),
         };
-    } else if (/^=|\+|-|\*|\/$/.test(arg)) {
+    } else if (regExpExpression.test(arg)) {
         return {
             type: 'exp',
             va: arg,
@@ -47,7 +52,7 @@ const ast = (code: string): TAst => {
         let type: TType;
 
         if (command === 'var') {
-            let testShift = dots.shift();
+            const testShift: string | undefined = dots.shift();
             if (testShift) {
                 command = testShift;
                 vars.push(command);

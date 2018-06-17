@@ -16,7 +16,7 @@ describe('test AST generater', (): void => {
         ';
     });
 
-    it('init', (): void => {
+    it('test simple code parse', (): void => {
         const testAST: TAst = ast(testCode);
         const expectedAST: TAst = [
             {

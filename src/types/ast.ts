@@ -4,6 +4,7 @@
 
 export type TType = 'command' | 'assign';
 export type TArg = 'num' | 'str' | 'exp' | 'var' | 'err';
+export type TExpr = '+' | '-' | '*' | '/' | '=';
 
 export interface IArgs {
     type: TArg;
