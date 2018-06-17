@@ -9,9 +9,9 @@ import TAst, {
 } from '../types/ast';
 
 const parseArg = (arg: string): IArgs => {
-    const regExpString: RegExp = /^'([A-Z]|[a-z])([A-Z]|[a-z]|[1-9])*'$/;
-    const regExpVariable: RegExp = /^([A-Z]|[a-z])([A-Z]|[a-z]|[1-9])*$/;
-    const regExpNumber: RegExp = /^[1-9]+(.[1-9]+)?$/;
+    const regExpString: RegExp = /^'([A-Z]|[a-z])([A-Z]|[a-z]|[0-9])*'$/;
+    const regExpVariable: RegExp = /^([A-Z]|[a-z])([A-Z]|[a-z]|[0-9])*$/;
+    const regExpNumber: RegExp = /^[0-9]+(.[0-9]+)?$/;
     const regExpExpression: RegExp = /^=|\+|-|\*|\/$/;
 
     if (regExpString.test(arg)) {
@@ -63,8 +63,16 @@ const ast = (code: string): TAst => {
             }
 
             type = 'assign';
+        } else if (command === 'if') {
+            type = 'if';
+        } else if (command === 'for') {
+            type = 'for';
+        } else if (command === 'end') {
+            type = 'end';
         } else if (vars.indexOf(command) !== -1) {
             type = 'assign';
+        } else if (command === 'skip') {
+            type = 'skip';
         } else {
             type = 'command';
         }

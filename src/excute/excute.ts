@@ -62,7 +62,24 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
         return re;
     }
 
-    switch (current.type) {
+    loop: switch (current.type) {
+        case 'if':
+            if (!Boolean(excuteExpr(current.args, vars))) {
+                for (let i of ast) {
+                    if (i.type !== 'end') {
+                        i.type = 'skip';
+                    } else {
+                        break loop;
+                    }
+                }
+                throw new Error('end command not matched exception');
+            }
+            break;
+        case 'for':
+            throw new Error('for loop is not developed yet');
+        // break;
+        // case 'end':
+        //     break;
         case 'assign':
             let varIndex: number = findVar(current.val, vars);
             if (varIndex !== -1) {
@@ -86,6 +103,9 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
 
                 re.push(currentCommand);
             }
+            break;
+        case 'skip':
+        default:
             break;
     }
 
