@@ -43,7 +43,8 @@ const parseArg = (arg: string): IArgs => {
 };
 
 const ast = (code: string): TAst => {
-    const splited = code.split(/\r\n|\r|\n/).filter((line: string) => Boolean(line.trim()));
+    const regExpEnter: RegExp = /\r\n|\r|\n/;
+    const splited: string[] = code.split(regExpEnter).filter((line: string) => Boolean(line.trim()));
     const vars: string[] = [];
 
     return splited.map((value: string): IAs => {
@@ -53,12 +54,14 @@ const ast = (code: string): TAst => {
 
         if (command === 'var') {
             const testShift: string | undefined = dots.shift();
+
             if (testShift) {
                 command = testShift;
                 vars.push(command);
             } else {
                 command = 'error';
             }
+
             type = 'assign';
         } else if (vars.indexOf(command) !== -1) {
             type = 'assign';
@@ -66,11 +69,13 @@ const ast = (code: string): TAst => {
             type = 'command';
         }
 
-        return {
+        const re: IAs = {
             type,
             val: command,
             args: dots.map(parseArg),
         };
+
+        return re;
     });
 };
 

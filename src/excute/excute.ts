@@ -2,21 +2,16 @@
  * @fileoverview excute target ast with external function
  */
 
-import TAst, { IArgs, IAs } from "../types/ast";
-import TExcute, { IExc, TVars } from "../types/excute";
+import { deepCloneArray } from "./deepclone";
 import excuteExprValue from './expr';
+
 import { internalList } from "./list";
 
-const deepCloneArray: <T>(content: T[]) => T[] = (content) => {
-    return [...content];
-};
-
-const deepCloneObject: <T>(content: { [key: string]: T }) => { [key: string]: T } = (content) => {
-    return Object.assign({}, content);
-};
+import TAst, { IArgs, IAs } from "../types/ast";
+import TExcute, { IExc, IVar, TVars } from "../types/excute";
 
 const findVar = (val: string, vars: TVars): number => {
-    for (let i = 0; i < vars.length; i++) {
+    for (let i: number = 0; i < vars.length; i++) {
         if (vars[i].name === val) {
             return i;
         }
@@ -26,6 +21,7 @@ const findVar = (val: string, vars: TVars): number => {
 
 const excuteExpr = (args: IArgs[], vars: TVars, previous?: any): any => {
     const current: IArgs | undefined = args.shift();
+
     if (!current) {
         return previous;
     }
@@ -36,7 +32,7 @@ const excuteExpr = (args: IArgs[], vars: TVars, previous?: any): any => {
                 case '=':
                     return excuteExpr(args, vars, previous);
                 default:
-                    const value = excuteExprValue(current.va, previous, excuteExpr(args, vars));
+                    const value: string | number = excuteExprValue(current.va, previous, excuteExpr(args, vars));
                     return excuteExpr(args, vars, value);
             }
         case 'num':
@@ -44,6 +40,7 @@ const excuteExpr = (args: IArgs[], vars: TVars, previous?: any): any => {
             return excuteExpr(args, vars, current.va);
         case 'var':
             let varIndex: number = findVar(current.va, vars);
+
             if (varIndex === -1) {
                 throw new Error('undefined variable exception');
             } else {
@@ -60,6 +57,7 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
     const re: TExcute = deepCloneArray(reE);
     const vars: TVars = deepCloneArray(varsE);
     const current: IAs | undefined = ast.shift();
+
     if (!current) {
         return re;
     }
@@ -70,19 +68,23 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
             if (varIndex !== -1) {
                 vars[varIndex].value = excuteExpr(current.args, vars);
             } else {
-                vars.push({
+                const currentVar: IVar = {
                     name: current.val,
                     value: excuteExpr(current.args, vars),
-                });
+                };
+
+                vars.push(currentVar);
             }
             break;
         case 'command':
             if (internalList.indexOf(current.val)) {
-                re.push({
+                const currentCommand: IExc = {
                     type: 'internal',
                     value: current.val,
                     arg: excuteExpr(current.args, vars),
-                });
+                };
+
+                re.push(currentCommand);
             }
             break;
     }

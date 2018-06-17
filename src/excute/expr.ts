@@ -10,7 +10,9 @@ const checkExpr = (expr: string): TExpr | null => {
         || expr === '*'
         || expr === '/'
         || expr === '=') {
+
         return expr;
+
     } else {
         return null;
     }

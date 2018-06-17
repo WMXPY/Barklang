@@ -6,10 +6,13 @@
 import generateAst from "./ast/ast";
 import excute from "./excute/excute";
 import { internalList, internals } from "./excute/list";
+
+import TAst from "./types/ast";
 import TCallables from "./types/callable";
+import TExcute from "./types/excute";
 
 const findExternal = (val: string, externals: TCallables): number => {
-    for (let i = 0; i < externals.length; i++) {
+    for (let i: number = 0; i < externals.length; i++) {
         if (externals[i].command === val) {
             return i;
         }
@@ -25,8 +28,9 @@ const determinReturn = (command: string): boolean => {
 };
 
 const determin = (command: string, externals: TCallables): ((arg: any) => void) | null => {
-    const internalIndex = internalList.indexOf(command);
-    const externalIndex = findExternal(command, externals);
+    const internalIndex: number = internalList.indexOf(command);
+    const externalIndex: number = findExternal(command, externals);
+
     if (internalIndex !== -1) {
         return internals[internalIndex].func;
     }
@@ -39,14 +43,15 @@ const determin = (command: string, externals: TCallables): ((arg: any) => void) 
 };
 
 const bkc = (code: string, externals: TCallables): any => {
-    const ast = generateAst(code);
-    const excuted = excute(ast);
+    const ast: TAst = generateAst(code);
+    const excuted: TExcute = excute(ast);
 
     for (let i of excuted) {
         if (determinReturn(i.value)) {
             return i.arg;
         }
-        const func = determin(i.value, externals);
+        const func: ((arg: any) => void) | null = determin(i.value, externals);
+
         if (!func) {
             throw new Error('command is not defined exception');
         }
