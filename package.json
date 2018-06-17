@@ -6,11 +6,25 @@
     "scripts": {
         "build": "tsc",
         "start": "tsc&&node dist/index.js",
-        "func": "ghoti func -a",
         "hint": "ghoti post -a node-normal",
-        "lambda": "ghoti lambda -a",
         "postinstall": "ghoti post -a node-normal",
         "test": "mocha"
+    },
+    "main": "dist/index.js",
+    "directories": {
+        "doc": "doc"
+    },
+    "bugs": {
+        "url": "https://github.com/WMXPY/bkc/issues"
+    },
+    "homepage": "https://github.com/WMXPY/bkc#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WMXPY/bkc.git"
+    },
+    "devEngines": {
+        "node": ">=5.x",
+        "npm": ">=4.x"
     },
     "author": "WMXPY",
     "license": "SEE LICENSE IN LICENSE",

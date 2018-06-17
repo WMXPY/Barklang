@@ -3,8 +3,4 @@
  * @fileoverview Entry
  */
 
-import * as Func from './func/import';
-import * as Lambda from './lambda/import';
-import Config from './config/config';
-
 console.log('Hello, bkc!');
