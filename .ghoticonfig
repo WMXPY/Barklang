@@ -1,0 +1,30 @@
+{
+    "type": "project",
+    "template": "node",
+    "sub": "normal",
+    "version": "3.3.8",
+    "title": "bkc",
+    "description": ":dog: Woof!",
+    "author": "WMXPY",
+    "config": {
+        
+    },
+    "underline": {
+        "active": false
+    },
+    "components": [
+        
+    ],
+    "pages": [
+
+    ],
+    "funcs": [
+
+    ],
+    "lambdas": [
+        
+    ],
+    "features": [
+        
+    ]
+}
