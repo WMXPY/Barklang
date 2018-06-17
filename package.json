@@ -29,13 +29,15 @@
     "author": "WMXPY",
     "license": "SEE LICENSE IN LICENSE",
     "devDependencies": {
+        "@types/chai": "^4.1.4",
         "@types/code": "^4.0.4",
         "@types/mocha": "^5.2.2",
+        "chai": "^4.1.2",
         "code": "^5.2.0",
         "ghoti-cli": "^3.3.8",
         "mocha": "^5.2.0",
-        "tslint": "^5.10.0",
         "ts-node": "^6.1.1",
+        "tslint": "^5.10.0",
         "typescript": "^2.9.2"
     },
     "dependencies": {}
