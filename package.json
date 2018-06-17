@@ -6,7 +6,6 @@
     "scripts": {
         "build": "tsc",
         "start": "tsc&&node dist/index.js",
-        "feature": "ghoti feature -a",
         "func": "ghoti func -a",
         "hint": "ghoti post -a node-normal",
         "lambda": "ghoti lambda -a",
@@ -17,15 +16,13 @@
     "license": "SEE LICENSE IN LICENSE",
     "devDependencies": {
         "@types/code": "^4.0.4",
-        "@types/mocha": "^5.2.0",
-        "@types/node": "^10.1.2",
+        "@types/mocha": "^5.2.2",
         "code": "^5.2.0",
         "ghoti-cli": "^3.3.8",
         "mocha": "^5.2.0",
         "tslint": "^5.10.0",
-        "ts-node": "^6.0.3",
-        "typescript": "^2.8.3"
+        "ts-node": "^6.1.1",
+        "typescript": "^2.9.2"
     },
-    "dependencies": {
-    }
+    "dependencies": {}
 }
