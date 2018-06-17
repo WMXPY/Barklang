@@ -42,7 +42,11 @@ const determin = (command: string, externals: TCallables): ((arg: any) => void) 
     return null;
 };
 
-const bkc = (code: string, externals: TCallables): any => {
+export const bkc = (code: string, externals?: TCallables): any => {
+    if (!externals) {
+        externals = [];
+    }
+
     const ast: TAst = generateAst(code);
     const excuted: TExcute = excute(ast);
 

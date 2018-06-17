@@ -7,19 +7,49 @@
 
 :dog: Woof!
 
-### Install
+bkc is a simple programming language, based on javascript. All bkc lang will run in a sandbox environment, so bkc is safe for untrust user input.
+
+## Install
 
 ```bash
-npm install
+npm install bkc --save
 ```
 
-### Devlopment, Test and Build
+You can use bkc in nodeJS environment or browser (commonjs)
 
-```bash
-npm start
-npm run build
-npm test
+## Usage
+
+Use bkc without external function.
+
+```js
+import bkc from 'bkc';
+// es5
+const bkc = require('bkc').default;
+
+bkc("print 'hello world!'"); // hello world!
 ```
+
+Use bkc with an external function.
+
+```js
+import bkc from 'bkc';
+// es5
+const bkc = require('bkc').default;
+
+bkc("hello 'hello world!'", [
+    {
+        command: 'hello',
+        func: (arg) => {
+            console.log(arg);
+        }
+    }
+]); // hello world!
+```
+
+## Documents
+
+-   [Grammar and example](https://github.com/WMXPY/bkc/blob/master/doc/bkc.md)
+-   [Develop](https://github.com/WMXPY/bkc/blob/master/doc/develop.md)
 
 > Created by [Ghoti-CLI](https://github.com/WMXPY/Ghoti-CLI/) 3.3.8
 
