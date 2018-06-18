@@ -7,6 +7,18 @@ export interface ICallable {
     func: (arg?: any) => void;
 }
 
-type TCallables = ICallable[];
+export interface IExternalVar {
+    name: string;
+    value: string | number;
+}
 
-export default TCallables;
+export type TCallables = ICallable[];
+export type TExteralVars = IExternalVar[];
+
+
+export interface IBkcOptions {
+    externals?: TCallables;
+    vars?: TExteralVars;
+}
+
+export default IBkcOptions;
