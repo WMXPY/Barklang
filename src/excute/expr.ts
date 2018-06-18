@@ -9,7 +9,12 @@ const checkExpr = (expr: string): TExpr | null => {
         || expr === '-'
         || expr === '*'
         || expr === '/'
-        || expr === '=') {
+        || expr === '='
+        || expr === '<'
+        || expr === '>'
+        || expr === '<='
+        || expr === '>='
+        || expr === '==') {
 
         return expr;
 
@@ -65,7 +70,54 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
             }
         case '=':
             return arg1;
+        case '<':
+            if (!arg2) {
+                throw new Error('not enough argument exception');
+            }
+            if (typeof arg1 === 'number' && typeof arg2 === 'number') {
+                return arg1 < arg2 ? 1 : 0;
+            } else {
+                throw new Error('illegal calculation exception');
+            }
+        case '>':
+            if (!arg2) {
+                throw new Error('not enough argument exception');
+            }
+            if (typeof arg1 === 'number' && typeof arg2 === 'number') {
+                return arg1 > arg2 ? 1 : 0;
+            } else {
+                throw new Error('illegal calculation exception');
+            }
+        case '<=':
+            if (!arg2) {
+                throw new Error('not enough argument exception');
+            }
+            if (typeof arg1 === 'number' && typeof arg2 === 'number') {
+                return arg1 <= arg2 ? 1 : 0;
+            } else {
+                throw new Error('illegal calculation exception');
+            }
+        case '>=':
+            if (!arg2) {
+                throw new Error('not enough argument exception');
+            }
+            if (typeof arg1 === 'number' && typeof arg2 === 'number') {
+                return arg1 >= arg2 ? 1 : 0;
+            } else {
+                throw new Error('illegal calculation exception');
+            }
+        case '==':
+            if (!arg2) {
+                throw new Error('not enough argument exception');
+            }
+            if (typeof arg1 === 'number' && typeof arg2 === 'number') {
+                return arg1 === arg2 ? 1 : 0;
+            } else {
+                throw new Error('illegal calculation exception');
+            }
     }
+
+    return arg1;
 };
 
 export default excuteExpr;
