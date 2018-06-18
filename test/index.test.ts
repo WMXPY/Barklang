@@ -47,6 +47,24 @@ describe('test code return', (): void => {
             temp\r\n\
             temp\r\
         ';
+        bkc(testCode, {
+            externals: [{
+                command: 'temp',
+                func: () => {
+                    temp++;
+                },
+            }],
+        });
+        const result = 2;
+        expect(temp).to.be.equal(result);
+    });
+
+    it('test external command excute', (): void => {
+        let temp: number = 0;
+        const testCode = '\
+            temp\r\n\
+            temp\r\
+        ';
         const test = bkc(testCode, {
             externals: [{
                 command: 'temp',
@@ -57,6 +75,7 @@ describe('test code return', (): void => {
         });
         const result = 2;
         expect(temp).to.be.equal(result);
+        expect(test).to.be.equal(void 0);
     });
 
     it('test external command excute with argument', (): void => {
