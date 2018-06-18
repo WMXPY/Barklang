@@ -23,6 +23,13 @@ const checkExpr = (expr: string): TExpr | null => {
     }
 };
 
+const checkExist = (anything: any): boolean => {
+    if (anything === undefined) {
+        return false;
+    }
+    return true;
+};
+
 const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number): string | number => {
     const expr: TExpr | null = checkExpr(exprE);
     if (!expr) {
@@ -31,7 +38,7 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
 
     switch (expr) {
         case '+':
-            if (!arg2) {
+            if (!checkExist(arg2)) {
                 throw new Error('not enough argument exception');
             }
             if (typeof arg1 === 'string') {
@@ -39,10 +46,14 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
             } else if (typeof arg2 === 'string') {
                 return arg1 + arg2;
             } else {
-                return arg1 + arg2;
+                if (arg2) {
+                    return arg1 + arg2;
+                } else {
+                    return arg1;
+                }
             }
         case '-':
-            if (!arg2) {
+            if (!checkExist(arg2)) {
                 throw new Error('not enough argument exception');
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
@@ -51,7 +62,7 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
                 throw new Error('illegal calculation exception');
             }
         case '*':
-            if (!arg2) {
+            if (!checkExist(arg2)) {
                 throw new Error('not enough argument exception');
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
@@ -60,7 +71,7 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
                 throw new Error('illegal calculation exception');
             }
         case '/':
-            if (!arg2) {
+            if (!checkExist(arg2)) {
                 throw new Error('not enough argument exception');
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
@@ -71,7 +82,7 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
         case '=':
             return arg1;
         case '<':
-            if (!arg2) {
+            if (!checkExist(arg2)) {
                 throw new Error('not enough argument exception');
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
@@ -80,7 +91,7 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
                 throw new Error('illegal calculation exception');
             }
         case '>':
-            if (!arg2) {
+            if (!checkExist(arg2)) {
                 throw new Error('not enough argument exception');
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
@@ -89,7 +100,7 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
                 throw new Error('illegal calculation exception');
             }
         case '<=':
-            if (!arg2) {
+            if (!checkExist(arg2)) {
                 throw new Error('not enough argument exception');
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
@@ -98,7 +109,7 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
                 throw new Error('illegal calculation exception');
             }
         case '>=':
-            if (!arg2) {
+            if (!checkExist(arg2)) {
                 throw new Error('not enough argument exception');
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
@@ -107,7 +118,7 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
                 throw new Error('illegal calculation exception');
             }
         case '==':
-            if (!arg2) {
+            if (!checkExist(arg2)) {
                 throw new Error('not enough argument exception');
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
