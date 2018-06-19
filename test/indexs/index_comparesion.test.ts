@@ -42,7 +42,7 @@ describe('test code return (comparesion)', (): void => {
         expect(test).to.be.equal(result);
     });
 
-    it('test usage of comparesion expression in code (layer compare) - 2', (): void => {
+    it('test usage of comparesion expression in code (layer compare) - 3', (): void => {
         const testCode = '\
             var a 1\r\n\
             a = 3 == 2 >= 1\r\
@@ -56,7 +56,7 @@ describe('test code return (comparesion)', (): void => {
         expect(test).to.be.equal(result);
     });
 
-    it('test usage of comparesion expression in code (layer compare) - 2', (): void => {
+    it('test usage of comparesion expression in code (layer compare) - 4', (): void => {
         const testCode = '\
             var a 1\r\n\
             a = 3 == 2 >= 1\r\
@@ -67,6 +67,21 @@ describe('test code return (comparesion)', (): void => {
         ';
         const test = bkc(testCode);
         const result = 1;
+        expect(test).to.be.equal(result);
+    });
+
+    it('test usage of comparesion expression in code (layer compare) - 5', (): void => {
+        const testCode = '\
+            var a 1\r\n\
+            a = 3 == 2 >= 1\r\
+            var b = a == 0\r\
+            if a != 0\r\
+            return 1\n\
+            end\r\
+            return a\r\
+        ';
+        const test = bkc(testCode);
+        const result = 0;
         expect(test).to.be.equal(result);
     });
 

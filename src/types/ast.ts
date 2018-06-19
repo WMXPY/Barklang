@@ -4,7 +4,7 @@
 
 export type TType = 'command' | 'assign' | 'if' | 'for' | 'end' | 'skip';
 export type TArg = 'num' | 'str' | 'exp' | 'var' | 'err';
-export type TExpr = '+' | '-' | '*' | '/' | '=' | '<' | '>' | '<=' | '>=' | '==';
+export type TExpr = '+' | '-' | '*' | '/' | '=' | '<' | '>' | '<=' | '>=' | '==' | '!=';
 
 export interface IArgs {
     type: TArg;
