@@ -130,8 +130,12 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
     return excuteRecursive(ast, re, vars);
 };
 
-const excute = (ast: TAst): TExcute => {
-    return excuteRecursive(ast, [], []);
+const excute = (ast: TAst, vars?: TVars): TExcute => {
+    if (vars) {
+        return excuteRecursive(ast, [], [...vars]);
+    } else {
+        return excuteRecursive(ast, [], []);
+    }
 };
 
 export default excute;

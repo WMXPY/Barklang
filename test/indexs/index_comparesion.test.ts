@@ -4,7 +4,7 @@
 
 import { expect } from 'chai';
 
-import bkc from '../src/index';
+import bkc from '../../src/index';
 
 describe('test code return (comparesion)', (): void => {
 

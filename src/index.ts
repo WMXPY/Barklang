@@ -56,7 +56,7 @@ export const bkc = (code: string, options?: IBkcOptions): any => {
     }
 
     const ast: TAst = generateAst(code);
-    const excuted: TExcute = excute(ast);
+    const excuted: TExcute = excute(ast, options.vars);
 
     for (let i of excuted) {
         if (determinReturn(i.value)) {

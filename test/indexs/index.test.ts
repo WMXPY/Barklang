@@ -4,7 +4,7 @@
 
 import { expect } from 'chai';
 
-import bkc from '../src/index';
+import bkc from '../../src/index';
 
 describe('test code return', (): void => {
 
@@ -95,6 +95,47 @@ describe('test code return', (): void => {
         });
         const result = 75;
         expect(temp).to.be.equal(result);
+        expect(test).to.be.equal(10);
+    });
+
+    it('test external command excute with instant function', (): void => {
+        let temp: number = 0;
+        const testCode = '\
+            temp len \'121330\'\r\n\
+            temp len \'dasda45\'\r\
+            return 10\r\
+        ';
+        const test = bkc(testCode, {
+            externals: [{
+                command: 'temp',
+                func: (arg: number) => {
+                    temp += arg;
+                },
+            }],
+        });
+        const result = 13;
+        expect(temp).to.be.equal(result);
+        expect(test).to.be.equal(10);
+    });
+
+    it('test external command excute with instant function(error)', (): void => {
+        let temp: number = 0;
+        const testCode = '\
+            temp len 121330\r\n\
+            temp len \'dasda45\'\r\
+            return 10\r\
+        ';
+        const test = bkc(testCode, {
+            externals: [{
+                command: 'temp',
+                func: (arg: number) => {
+                    temp += arg;
+                },
+            }],
+        });
+
+        // tslint:disable-next-line
+        expect(isNaN(temp)).to.be.true;
         expect(test).to.be.equal(10);
     });
 });
