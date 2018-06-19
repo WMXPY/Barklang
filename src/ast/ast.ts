@@ -9,7 +9,7 @@ import TAst, {
 } from '../types/ast';
 
 const parseArg = (arg: string): IArgs => {
-    const regExpString: RegExp = /^'([A-Z]|[a-z])([A-Z]|[a-z]|[0-9])*'$/;
+    const regExpString: RegExp = /^'([A-Z]|[a-z]|[0-9])*'$/;
     const regExpVariable: RegExp = /^([A-Z]|[a-z])([A-Z]|[a-z]|[0-9])*$/;
     const regExpNumber: RegExp = /^[0-9]+(.[0-9]+)?$/;
     const regExpExpression: RegExp = /^(=|\+|-|\*|\/|<|>|<=|>=|==)$/;

@@ -9,6 +9,7 @@ import { internalList } from "./list";
 
 import TAst, { IArgs, IAs } from "../types/ast";
 import TExcute, { IExc, IVar, TVars } from "../types/excute";
+import { instantList, instants } from "./instant";
 
 const findVar = (val: string, vars: TVars): number => {
     for (let i: number = 0; i < vars.length; i++) {
@@ -39,6 +40,17 @@ const excuteExpr = (args: IArgs[], vars: TVars, previous?: any): any => {
         case 'str':
             return excuteExpr(args, vars, current.va);
         case 'var':
+            let instantIndex: number = instantList.indexOf(current.va);
+            if (instantIndex !== -1) {
+                let result;
+                try {
+                    result = instants[instantIndex].func(excuteExpr(args, vars, previous));
+                } catch (err) {
+                    throw new Error('Instant function excute failed');
+                }
+                return result;
+            }
+
             let varIndex: number = findVar(current.va, vars);
 
             if (varIndex === -1) {
@@ -64,6 +76,7 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
 
     loop: switch (current.type) {
         case 'if':
+
             if (!Boolean(excuteExpr(current.args, vars))) {
                 for (let i of ast) {
                     if (i.type !== 'end') {
@@ -77,10 +90,8 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
             break;
         case 'for':
             throw new Error('for loop is not developed yet');
-        // break;
-        // case 'end':
-        //     break;
         case 'assign':
+
             let varIndex: number = findVar(current.val, vars);
             if (varIndex !== -1) {
                 vars[varIndex].value = excuteExpr(current.args, vars);
@@ -94,6 +105,8 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
             }
             break;
         case 'command':
+
+            // get internal
             if (internalList.indexOf(current.val)) {
                 const currentCommand: IExc = {
                     type: 'internal',
@@ -103,6 +116,11 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
 
                 re.push(currentCommand);
             }
+
+            // // get external
+            // if (instantList.indexOf(current.val) !== -1) {
+
+            // }
             break;
         case 'skip':
         default:
