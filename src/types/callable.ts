@@ -15,7 +15,6 @@ export interface IExternalVar {
 export type TCallables = ICallable[];
 export type TExteralVars = IExternalVar[];
 
-
 export interface IBkcOptions {
     externals?: TCallables;
     vars?: TExteralVars;

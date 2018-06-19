@@ -2,7 +2,7 @@
  * @fileoverview excute target ast with external function
  */
 
-import { deepCloneArray } from "./deepclone";
+import { deepCloneArray } from "../util/deepclone";
 import excuteExprValue from './expr';
 
 import { internalList } from "./list";

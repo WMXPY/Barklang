@@ -7,6 +7,8 @@ import TAst, {
     IAs,
     TType,
 } from '../types/ast';
+import { IBkcOptions } from '../types/callable';
+import { fixOption } from '../util/check';
 
 const parseArg = (arg: string): IArgs => {
     const regExpString: RegExp = /^'([A-Z]|[a-z]|[0-9])*'$/;
@@ -42,7 +44,9 @@ const parseArg = (arg: string): IArgs => {
     }
 };
 
-const ast = (code: string): TAst => {
+const ast = (code: string, optionsE?: IBkcOptions): TAst => {
+    const options = fixOption(optionsE);
+
     const regExpEnter: RegExp = /\r\n|\r|\n/;
     const splited: string[] = code.split(regExpEnter).filter((line: string) => Boolean(line.trim()));
     const vars: string[] = [];

@@ -10,6 +10,7 @@ import { internalList, internals } from "./excute/list";
 import TAst from "./types/ast";
 import IBkcOptions, { TCallables } from "./types/callable";
 import TExcute from "./types/excute";
+import { fixOption } from "./util/check";
 
 const findExternal = (val: string, externals: TCallables): number => {
     for (let i: number = 0; i < externals.length; i++) {
@@ -42,27 +43,17 @@ const determin = (command: string, externals: TCallables): ((arg: any) => void) 
     return null;
 };
 
-export const bkc = (code: string, options?: IBkcOptions): any => {
-    if (!options) {
-        options = {};
-    }
+export const bkc = (code: string, optionsE?: IBkcOptions): any => {
+    const options: IBkcOptions = fixOption(optionsE);
 
-    if (!options.externals) {
-        options.externals = [];
-    }
-
-    if (!options.vars) {
-        options.vars = [];
-    }
-
-    const ast: TAst = generateAst(code);
+    const ast: TAst = generateAst(code, options);
     const excuted: TExcute = excute(ast, options.vars);
 
     for (let i of excuted) {
         if (determinReturn(i.value)) {
             return i.arg;
         }
-        const func: ((arg: any) => void) | null = determin(i.value, options.externals);
+        const func: ((arg: any) => void) | null = determin(i.value, (options.externals as TCallables));
 
         if (!func) {
             throw new Error('command is not defined exception');
