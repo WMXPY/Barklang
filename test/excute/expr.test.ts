@@ -68,6 +68,15 @@ describe('test expression excution', (): void => {
         expect(test3).to.be.equal(result3);
     });
 
+    it('test excute calcualtion result (=)', (): void => {
+        const test = excuteExpr('=', 9, 4);
+        const result = 9;
+        expect(test).to.be.equal(result);
+        const test2 = excuteExpr('=', 9);
+        const result2 = 9;
+        expect(test2).to.be.equal(result2);
+    });
+
 });
 
 describe('test expr util functions', (): void => {

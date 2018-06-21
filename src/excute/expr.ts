@@ -50,7 +50,7 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
                 if (arg2) {
                     return arg1 + arg2;
                 } else {
-                    return arg1;
+                    throw new Error('illegal calculation exception');
                 }
             }
         case '-':
