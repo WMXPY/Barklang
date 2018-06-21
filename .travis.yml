@@ -4,6 +4,9 @@ install:
  - npm install
  - npm install --only=dev
 
+node_js:
+ - '9'
+
 script: 
  - npm test
 
