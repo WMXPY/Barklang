@@ -29,7 +29,7 @@ describe('test excuted result accessiable', (): void => {
             arg: 1,
         }];
 
-        expect(excute(ast)).to.be.deep.equal(result);
+        expect(excute(ast, {})).to.be.deep.equal(result);
     });
 
 });
@@ -66,7 +66,7 @@ describe('test excute code', (): void => {
             arg: 3,
         }];
 
-        expect(excute(ast)).to.be.deep.equal(result);
+        expect(excute(ast, {})).to.be.deep.equal(result);
     });
 
     it('test expr excute', (): void => {
@@ -97,7 +97,7 @@ describe('test excute code', (): void => {
             arg: '4test',
         }];
 
-        expect(excute(ast)).to.be.deep.equal(result);
+        expect(excute(ast, {})).to.be.deep.equal(result);
     });
 
     it('test complex excute', (): void => {
@@ -144,7 +144,7 @@ describe('test excute code', (): void => {
             arg: '4test32',
         }];
 
-        expect(excute(ast)).to.be.deep.equal(result);
+        expect(excute(ast, {})).to.be.deep.equal(result);
     });
 
     it('test variable assign and recall', (): void => {
@@ -219,7 +219,7 @@ describe('test excute code', (): void => {
             arg: '4test56',
         }];
 
-        expect(excute(ast)).to.be.deep.equal(result);
+        expect(excute(ast, {})).to.be.deep.equal(result);
     });
 
 });

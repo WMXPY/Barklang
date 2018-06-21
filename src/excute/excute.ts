@@ -8,7 +8,9 @@ import excuteExprValue from './expr';
 import { internalList } from "./list";
 
 import TAst, { IArgs, IAs } from "../types/ast";
+import { IBkcOptions } from "../types/callable";
 import TExcute, { IExc, IVar, TVars } from "../types/excute";
+import { fixOption } from "../util/check";
 import { instantList, instants } from "./instant";
 
 const findVar = (val: string, vars: TVars): number => {
@@ -66,11 +68,12 @@ const excuteExpr = (args: IArgs[], vars: TVars, previous?: any): any => {
 
 };
 
-const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
+const excuteRecursive = (astE: TAst, reE: TExcute, options: IBkcOptions): TExcute => {
     const ast: TAst = deepCloneArray(astE);
     const re: TExcute = deepCloneArray(reE);
-    const vars: TVars = deepCloneArray(varsE);
     const current: IAs | undefined = ast.shift();
+
+    const vars: IVar[] = (options.vars as IVar[]);
 
     if (!current) {
         return re;
@@ -107,8 +110,6 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
             }
             break;
         case 'command':
-
-            // get internal
             if (internalList.indexOf(current.val)) {
                 const currentCommand: IExc = {
                     type: 'internal',
@@ -119,10 +120,6 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
                 re.push(currentCommand);
             }
 
-            // // get external
-            // if (instantList.indexOf(current.val) !== -1) {
-
-            // }
             break;
         case 'error':
             throw new Error('unexpect namespace exception');
@@ -131,15 +128,12 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
             break;
     }
 
-    return excuteRecursive(ast, re, vars);
+    return excuteRecursive(ast, re, options);
 };
 
-const excute = (ast: TAst, vars?: TVars): TExcute => {
-    if (vars) {
-        return excuteRecursive(ast, [], [...vars]);
-    } else {
-        return excuteRecursive(ast, [], []);
-    }
+const excute = (ast: TAst, optionsE: IBkcOptions): TExcute => {
+    const options: IBkcOptions = fixOption(optionsE);
+    return excuteRecursive(ast, [], options);
 };
 
 export default excute;

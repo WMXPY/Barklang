@@ -29,10 +29,12 @@ describe('test excuted result with initial vars', (): void => {
             arg: 45,
         }];
 
-        expect(excute(ast, [{
-            name: 'tt',
-            value: 45,
-        }])).to.be.deep.equal(result);
+        expect(excute(ast, {
+            vars: [{
+                name: 'tt',
+                value: 45,
+            }],
+        })).to.be.deep.equal(result);
     });
 
     it('test variable assign complex', (): void => {
@@ -80,10 +82,12 @@ describe('test excuted result with initial vars', (): void => {
             arg: 86,
         }];
 
-        expect(excute(ast, [{
-            name: 'tt',
-            value: 45,
-        }])).to.be.deep.equal(result);
+        expect(excute(ast, {
+            vars: [{
+                name: 'tt',
+                value: 45,
+            }],
+        })).to.be.deep.equal(result);
     });
 
 });

@@ -44,7 +44,7 @@ describe('test excuted result accessiable with if statement', (): void => {
             arg: 1,
         }];
 
-        expect(excute(ast)).to.be.deep.equal(result);
+        expect(excute(ast, {})).to.be.deep.equal(result);
     });
 
     it('test if return false', (): void => {
@@ -91,7 +91,7 @@ describe('test excuted result accessiable with if statement', (): void => {
             arg: 9,
         }];
 
-        expect(excute(ast)).to.be.deep.equal(result);
+        expect(excute(ast, {})).to.be.deep.equal(result);
     });
 
     it('test if return error', (): void => {
@@ -186,7 +186,7 @@ describe('test excuted result accessiable with if statement', (): void => {
             arg: 7,
         }];
 
-        expect(excute(ast)).to.be.deep.equal(result);
+        expect(excute(ast, {})).to.be.deep.equal(result);
     });
 
 });
