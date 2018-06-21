@@ -4,9 +4,15 @@
 
 import { expect } from 'chai';
 
-import excuteExpr from '../../src/excute/expr';
+import excuteExpr, { checkExist, checkExpr } from '../../src/excute/expr';
 
 describe('test expression excution', (): void => {
+
+    it('excuteExpr should throw unvalid expression exception if expr is not valid', (): void => {
+        expect(() => {
+            excuteExpr('@', 5, 3);
+        }).to.be.throw('unvalid expression exception');
+    });
 
     it('test excute calcualtion result (+ numbers)', (): void => {
         const test = excuteExpr('+', 5, 3);
@@ -56,6 +62,23 @@ describe('test expression excution', (): void => {
         const test7 = excuteExpr('/', 2, 5);
         const result7 = 0.4;
         expect(test7).to.be.equal(result7);
+    });
+
+});
+
+describe('test expr util functions', (): void => {
+
+    it('checkExpr should return null when expr is not one of the option', (): void => {
+        expect(checkExpr('&')).to.be.equal(null);
+    });
+
+    it('checkExpr should return expr itslef when expr is one of the option', (): void => {
+        expect(checkExpr('+')).to.be.equal('+');
+    });
+
+    it('checkExist should return argument is undefinded or not', (): void => {
+        expect(checkExist('hello')).to.be.equal(true);
+        expect(checkExist(void 0)).to.be.equal(false);
     });
 
 });

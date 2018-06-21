@@ -4,7 +4,7 @@
 
 import { TExpr } from "../types/ast";
 
-const checkExpr = (expr: string): TExpr | null => {
+export const checkExpr = (expr: string): TExpr | null => {
     if (expr === '+'
         || expr === '-'
         || expr === '*'
@@ -24,7 +24,7 @@ const checkExpr = (expr: string): TExpr | null => {
     }
 };
 
-const checkExist = (anything: any): boolean => {
+export const checkExist = (anything: any): boolean => {
     if (anything === undefined) {
         return false;
     }

@@ -9,8 +9,7 @@ node_js:
  - '9'
 
 script: 
- - npm install codecov nyc -g
- - nyc mocha
+ - npm test
 
 after_success:
- - codecov -f coverage\coverage-final.json
+ - npm run coverage

@@ -29,6 +29,6 @@ export const fixOption = (optionsE: IBkcOptions | undefined) => {
     return options;
 };
 
-export const checkNamespace = (name: string) => {
-    internalList.indexOf(name);
+export const checkNamespace = (name: string): boolean => {
+    return internalList.indexOf(name) !== -1;
 };
