@@ -38,30 +38,34 @@ describe('test expression excution', (): void => {
         expect(test2).to.be.equal(result2);
     });
 
-    it('test excute calcualtion result (- | * | /)', (): void => {
+    it('test excute calcualtion result (-)', (): void => {
         const test = excuteExpr('-', 6, 8);
         const result = -2;
         expect(test).to.be.equal(result);
-        const test4 = excuteExpr('-', 77, 4);
-        const result4 = 73;
-        expect(test4).to.be.equal(result4);
-
-        const test2 = excuteExpr('*', 4, 6);
-        const result2 = 24;
+        const test2 = excuteExpr('-', 77, 4);
+        const result2 = 73;
         expect(test2).to.be.equal(result2);
-        const test5 = excuteExpr('*', -4, 6);
-        const result5 = -24;
-        expect(test5).to.be.equal(result5);
+    });
 
-        const test3 = excuteExpr('/', 9, 4);
-        const result3 = 2.25;
+    it('test excute calcualtion result (*)', (): void => {
+        const test = excuteExpr('*', 4, 6);
+        const result = 24;
+        expect(test).to.be.equal(result);
+        const test2 = excuteExpr('*', -4, 6);
+        const result2 = -24;
+        expect(test2).to.be.equal(result2);
+    });
+
+    it('test excute calcualtion result (/)', (): void => {
+        const test = excuteExpr('/', 9, 4);
+        const result = 2.25;
+        expect(test).to.be.equal(result);
+        const test2 = excuteExpr('/', -8, 4);
+        const result2 = -2;
+        expect(test2).to.be.equal(result2);
+        const test3 = excuteExpr('/', 2, 5);
+        const result3 = 0.4;
         expect(test3).to.be.equal(result3);
-        const test6 = excuteExpr('/', -8, 4);
-        const result6 = -2;
-        expect(test6).to.be.equal(result6);
-        const test7 = excuteExpr('/', 2, 5);
-        const result7 = 0.4;
-        expect(test7).to.be.equal(result7);
     });
 
 });
@@ -79,6 +83,104 @@ describe('test expr util functions', (): void => {
     it('checkExist should return argument is undefinded or not', (): void => {
         expect(checkExist('hello')).to.be.equal(true);
         expect(checkExist(void 0)).to.be.equal(false);
+    });
+
+});
+
+describe('test not enough argument exception throw', (): void => {
+
+    it('should throw the exception with 1 argument only (+)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '+', 9)).to.be.throw('not enough argument exception');
+    });
+
+    it('should throw the exception with 1 argument only (-)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '-', 9)).to.be.throw('not enough argument exception');
+    });
+
+    it('should throw the exception with 1 argument only (*)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '*', 9)).to.be.throw('not enough argument exception');
+    });
+
+    it('should throw the exception with 1 argument only (/)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '/', 9)).to.be.throw('not enough argument exception');
+    });
+
+    it('should throw the exception with 1 argument only (<)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '<', 9)).to.be.throw('not enough argument exception');
+    });
+
+    it('should throw the exception with 1 argument only (>)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '>', 9)).to.be.throw('not enough argument exception');
+    });
+
+    it('should throw the exception with 1 argument only (<=)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '<=', 9)).to.be.throw('not enough argument exception');
+    });
+
+    it('should throw the exception with 1 argument only (>=)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '>=', 9)).to.be.throw('not enough argument exception');
+    });
+
+    it('should throw the exception with 1 argument only (==)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '==', 9)).to.be.throw('not enough argument exception');
+    });
+
+    it('should throw the exception with 1 argument only (!=)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '!=', 9)).to.be.throw('not enough argument exception');
+    });
+
+});
+
+describe('test illegal calculation exception throw', (): void => {
+
+    it('should NOT throw the exception with wrong argument type (+)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '+', 9, 'hello')).to.be.not.throw('illegal calculation exception');
+        expect(excuteExpr.bind(excuteExpr, '+', 'hello', 9)).to.be.not.throw('illegal calculation exception');
+    });
+
+    it('should throw the exception with wrong argument type (-)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '-', 9, 'hello')).to.be.throw('illegal calculation exception');
+        expect(excuteExpr.bind(excuteExpr, '-', 'hello', 9)).to.be.throw('illegal calculation exception');
+    });
+
+    it('should throw the exception with wrong argument type (*)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '*', 9, 'hello')).to.be.throw('illegal calculation exception');
+        expect(excuteExpr.bind(excuteExpr, '*', 'hello', 9)).to.be.throw('illegal calculation exception');
+    });
+
+    it('should throw the exception with wrong argument type (/)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '/', 9, 'hello')).to.be.throw('illegal calculation exception');
+        expect(excuteExpr.bind(excuteExpr, '/', 'hello', 9)).to.be.throw('illegal calculation exception');
+    });
+
+    it('should throw the exception with wrong argument type (<)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '<', 9, 'hello')).to.be.throw('illegal calculation exception');
+        expect(excuteExpr.bind(excuteExpr, '<', 'hello', 9)).to.be.throw('illegal calculation exception');
+    });
+
+    it('should throw the exception with wrong argument type (>)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '>', 9, 'hello')).to.be.throw('illegal calculation exception');
+        expect(excuteExpr.bind(excuteExpr, '>', 'hello', 9)).to.be.throw('illegal calculation exception');
+    });
+
+    it('should throw the exception with wrong argument type (<=)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '<=', 9, 'hello')).to.be.throw('illegal calculation exception');
+        expect(excuteExpr.bind(excuteExpr, '<=', 'hello', 9)).to.be.throw('illegal calculation exception');
+    });
+
+    it('should throw the exception with wrong argument type (>=)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '>=', 9, 'hello')).to.be.throw('illegal calculation exception');
+        expect(excuteExpr.bind(excuteExpr, '>=', 'hello', 9)).to.be.throw('illegal calculation exception');
+    });
+
+    it('should throw the exception with wrong argument type (==)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '==', 9, 'hello')).to.be.throw('illegal calculation exception');
+        expect(excuteExpr.bind(excuteExpr, '==', 'hello', 9)).to.be.throw('illegal calculation exception');
+    });
+
+    it('should throw the exception with wrong argument type (!=)', (): void => {
+        expect(excuteExpr.bind(excuteExpr, '!=', 9, 'hello')).to.be.throw('illegal calculation exception');
+        expect(excuteExpr.bind(excuteExpr, '!=', 'hello', 9)).to.be.throw('illegal calculation exception');
     });
 
 });
