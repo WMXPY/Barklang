@@ -2,6 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/bkc.svg)](https://badge.fury.io/js/bkc)
 [![Build Status](https://travis-ci.org/WMXPY/bkc.svg?branch=master)](https://travis-ci.org/WMXPY/bkc)
+[![codecov](https://codecov.io/gh/WMXPY/bkc/branch/master/graph/badge.svg)](https://codecov.io/gh/WMXPY/bkc)
 [![Gitter](https://badges.gitter.im/WMXPY/bkc.svg)](https://gitter.im/bkc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![downloads](https://img.shields.io/npm/dm/bkc.svg)](https://www.npmjs.com/package/bkc)
 
