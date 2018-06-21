@@ -2,13 +2,16 @@
  * @fileoverview parse code string to ast tree
  */
 
+import { instantList } from '../excute/instant';
+import { internalList, reservedWordList } from '../excute/list';
 import TAst, {
     IArgs,
     IAs,
     TType,
 } from '../types/ast';
-import { IBkcOptions } from '../types/callable';
+import { IBkcOptions, TCallables } from '../types/callable';
 import { fixOption } from '../util/check';
+import { TVars } from '../types/excute';
 
 const combineStartedToEnd = (list: string[]): IArgs => {
     return {
@@ -110,7 +113,7 @@ const parseArg = (arg: string): IArgs => {
 };
 
 const ast = (code: string, optionsE?: IBkcOptions): TAst => {
-    const options = fixOption(optionsE);
+    const options: IBkcOptions = fixOption(optionsE);
 
     const regExpEnter: RegExp = /\r\n|\r|\n/;
     const splited: string[] = code.split(regExpEnter).filter((line: string) => Boolean(line.trim())).map((line: string) => line.trim());
@@ -126,12 +129,22 @@ const ast = (code: string, optionsE?: IBkcOptions): TAst => {
 
             if (testShift) {
                 command = testShift;
-                vars.push(command);
+
+                if (internalList.indexOf(testShift) !== -1
+                    || (options.externals as TCallables).map((external) => external.command).indexOf(testShift) !== -1
+                    || (options.vars as TVars).map((singleVar) => singleVar.name).indexOf(testShift) !== -1
+                    || reservedWordList.indexOf(testShift) !== -1
+                    || instantList.indexOf(testShift) !== -1) {
+                    type = 'error';
+                } else {
+                    vars.push(command);
+                    type = 'assign';
+                }
             } else {
                 command = 'error';
+                type = 'error';
             }
 
-            type = 'assign';
         } else if (command === 'if') {
             type = 'if';
         } else if (command === 'for') {

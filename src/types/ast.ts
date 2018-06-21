@@ -2,7 +2,7 @@
  * @fileoverview ast type interface
  */
 
-export type TType = 'command' | 'assign' | 'if' | 'for' | 'end' | 'skip';
+export type TType = 'command' | 'assign' | 'if' | 'for' | 'end' | 'skip' | 'error';
 export type TArg = 'num' | 'str' | 'exp' | 'var' | 'err' | 'comstart' | 'comend' | 'emp';
 export type TExpr = '+' | '-' | '*' | '/' | '=' | '<' | '>' | '<=' | '>=' | '==' | '!=';
 

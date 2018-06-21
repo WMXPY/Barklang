@@ -124,6 +124,8 @@ const excuteRecursive = (astE: TAst, reE: TExcute, varsE: TVars): TExcute => {
 
             // }
             break;
+        case 'error':
+            throw new Error('unexpect namespace exception');
         case 'skip':
         default:
             break;

@@ -5,6 +5,10 @@ export const internalList: string[] = [
     'return',
 ];
 
+export const reservedWordList: string[] = [
+    'var',
+];
+
 export const internals: TCallables = [
     {
         command: 'print',
@@ -14,4 +18,3 @@ export const internals: TCallables = [
         },
     },
 ];
-
