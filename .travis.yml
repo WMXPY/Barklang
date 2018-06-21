@@ -4,16 +4,10 @@ install:
  - npm install
  - npm install --only=dev
 
-node_js:
- - '5'
- - '7'
- - '9'
-
 script: 
  - npm test
 
 after_success:
  - npm install codecov nyc -g
- - npm run coverage
  - nyc mocha
  - codecov -f coverage\coverage-final.json
