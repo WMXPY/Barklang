@@ -3,13 +3,14 @@ language: node_js
 install:
  - npm install
  - npm install --only=dev
+ - npm install codecov nyc -g
 
 node_js:
  - '7'
  - '9'
 
-script: 
- - npm test
+script:
+ - nyc mocha
 
 after_success:
- - npm run coverage
+ - codecov -f ./coverage/coverage-final.json
