@@ -118,7 +118,47 @@ describe('test code return', (): void => {
         expect(test).to.be.equal(10);
     });
 
-    it('test external command excute with instant function(error)', (): void => {
+    it('test external command excute with instant function (with space)', (): void => {
+        let temp: number = 0;
+        const testCode = '\
+            temp len \'121  330\'\r\n\
+            temp len \'dasda45\'\r\
+            return  10\r\
+        ';
+        const test = bkc(testCode, {
+            externals: [{
+                command: 'temp',
+                func: (arg: number) => {
+                    temp += arg;
+                },
+            }],
+        });
+        const result = 15;
+        expect(temp).to.be.equal(result);
+        expect(test).to.be.equal(10);
+    });
+
+    it('test external command excute with instant function (with space 2)', (): void => {
+        let temp: number = 0;
+        const testCode = '\
+            temp len    \'121  330\'\r\n\
+            temp   len \'dasda45\'  \r\
+            return  10\r\
+        ';
+        const test = bkc(testCode, {
+            externals: [{
+                command: 'temp',
+                func: (arg: number) => {
+                    temp += arg;
+                },
+            }],
+        });
+        const result = 15;
+        expect(temp).to.be.equal(result);
+        expect(test).to.be.equal(10);
+    });
+
+    it('test external command excute with instant function (error)', (): void => {
         let temp: number = 0;
         const testCode = '\
             temp len 121330\r\n\

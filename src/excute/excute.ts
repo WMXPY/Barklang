@@ -58,6 +58,8 @@ const excuteExpr = (args: IArgs[], vars: TVars, previous?: any): any => {
             } else {
                 return excuteExpr(args, vars, vars[varIndex].value);
             }
+        case 'emp':
+            return excuteExpr(args, vars, previous);
         case 'err':
             throw new Error('unexpect argument exception');
     }
