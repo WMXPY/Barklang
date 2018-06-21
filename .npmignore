@@ -10,3 +10,5 @@ tslint.json
 test
 .travis.yml
 doc
+coverage
+.nyc_output

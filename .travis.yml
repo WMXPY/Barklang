@@ -9,4 +9,10 @@ node_js:
  - '7'
  - '9'
 
-script: npm test
+script: 
+ - npm test
+
+after_success:
+ - npm install codecov -g
+ - npm run coverage
+ - codecov
