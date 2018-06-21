@@ -17,7 +17,15 @@ export type TExteralVars = IExternalVar[];
 
 export interface IBkcOptions {
     externals?: TCallables;
+    instants?: TCallables;
     vars?: TExteralVars;
+}
+
+export type TNamespaceResponse = INamespaceResponse[];
+
+export interface INamespaceResponse {
+    name: string;
+    category: 'var' | 'external' | 'instant';
 }
 
 export default IBkcOptions;

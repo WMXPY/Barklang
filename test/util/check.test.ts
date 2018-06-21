@@ -12,6 +12,7 @@ describe('test util checks', (): void => {
     it('fixOption should make empty option better', (): void => {
         const result: IBkcOptions = {
             vars: [],
+            instants: [],
             externals: [],
         };
 

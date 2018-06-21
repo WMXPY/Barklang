@@ -9,9 +9,9 @@ import TAst, {
     IAs,
     TType,
 } from '../types/ast';
-import { IBkcOptions, TCallables } from '../types/callable';
+import { IBkcOptions, ICallable, TCallables } from '../types/callable';
+import { IVar, TVars } from '../types/excute';
 import { fixOption } from '../util/check';
-import { TVars } from '../types/excute';
 
 const combineStartedToEnd = (list: string[]): IArgs => {
     return {
@@ -131,8 +131,9 @@ const ast = (code: string, optionsE?: IBkcOptions): TAst => {
                 command = testShift;
 
                 if (internalList.indexOf(testShift) !== -1
-                    || (options.externals as TCallables).map((external) => external.command).indexOf(testShift) !== -1
-                    || (options.vars as TVars).map((singleVar) => singleVar.name).indexOf(testShift) !== -1
+                    || (options.externals as TCallables).map((external: ICallable) => external.command).indexOf(testShift) !== -1
+                    || (options.instants as TCallables).map((instants: ICallable) => instants.command).indexOf(testShift) !== -1
+                    || (options.vars as TVars).map((singleVar: IVar) => singleVar.name).indexOf(testShift) !== -1
                     || reservedWordList.indexOf(testShift) !== -1
                     || instantList.indexOf(testShift) !== -1) {
                     type = 'error';

@@ -10,7 +10,7 @@ import { internalList, internals } from "./excute/list";
 import TAst from "./types/ast";
 import IBkcOptions, { TCallables } from "./types/callable";
 import TExcute from "./types/excute";
-import { fixOption } from "./util/check";
+import { checkOptionNameSpace, fixOption } from "./util/check";
 
 const findExternal = (val: string, externals: TCallables): number => {
     for (let i: number = 0; i < externals.length; i++) {
@@ -45,6 +45,10 @@ const determin = (command: string, externals: TCallables): ((arg: any) => void) 
 
 export const bkc = (code: string, optionsE?: IBkcOptions): any => {
     const options: IBkcOptions = fixOption(optionsE);
+
+    if (checkOptionNameSpace(options).length !== 0) {
+        throw new Error('initial namespace is occupied exception');
+    }
 
     const ast: TAst = generateAst(code, options);
     const excuted: TExcute = excute(ast, options);

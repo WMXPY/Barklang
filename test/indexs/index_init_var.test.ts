@@ -44,4 +44,46 @@ describe('test code return (init vars)', (): void => {
         expect(test).to.be.equal(result);
     });
 
+    it('test name space of initial duplicated (instant)', (): void => {
+        const testCode = '\
+            var a 1\r\n\
+            a = 3 + len\r\
+            return a\r\
+        ';
+        expect(bkc.bind(bkc, testCode, {
+            vars: [{
+                name: 'len',
+                value: 45,
+            }],
+        })).to.be.throw('initial namespace is occupied exception');
+    });
+
+    it('test name space of initial duplicated (internal)', (): void => {
+        const testCode = '\
+            var a 1\r\n\
+            a = 3 + print\r\
+            return a\r\
+        ';
+        expect(bkc.bind(bkc, testCode, {
+            vars: [{
+                name: 'print',
+                value: 45,
+            }],
+        })).to.be.throw('initial namespace is occupied exception');
+    });
+
+    it('test name space of initial duplicated (reserved)', (): void => {
+        const testCode = '\
+            var a 1\r\n\
+            a = 3 + var\r\
+            return a\r\
+        ';
+        expect(bkc.bind(bkc, testCode, {
+            vars: [{
+                name: 'var',
+                value: 45,
+            }],
+        })).to.be.throw('initial namespace is occupied exception');
+    });
+
 });
