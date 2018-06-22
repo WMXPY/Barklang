@@ -1,53 +1,13 @@
 {
-    "name": "bkc",
-    "version": "2.1.0",
-    "description": ":dog: Woof!",
-    "private": false,
+    "author": "WMXPY",
     "bin": {
         "bkc": "bin/bkc"
-    },
-    "scripts": {
-        "build": "tsc",
-        "start": "tsc&&node dist/index.js",
-        "hint": "ghoti post -a node-normal",
-        "test": "mocha"
-    },
-    "nyc": {
-        "include": [
-            "src/**/*.ts"
-        ],
-        "extension": [
-            ".ts"
-        ],
-        "require": [
-            "ts-node/register"
-        ],
-        "report-dir": "coverage",
-        "reporter": [
-            "json",
-            "text-summary"
-        ],
-        "sourceMap": true,
-        "instrument": true
-    },
-    "main": "dist/index.js",
-    "directories": {
-        "doc": "doc"
     },
     "bugs": {
         "url": "https://github.com/WMXPY/bkc/issues"
     },
-    "homepage": "https://github.com/WMXPY/bkc#readme",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/WMXPY/bkc.git"
-    },
-    "devEngines": {
-        "node": ">=5.x",
-        "npm": ">=4.x"
-    },
-    "author": "WMXPY",
-    "license": "SEE LICENSE IN LICENSE",
+    "dependencies": {},
+    "description": ":dog: Woof!",
     "devDependencies": {
         "@types/chai": "^4.1.4",
         "@types/code": "^4.0.4",
@@ -60,5 +20,45 @@
         "tslint": "^5.10.0",
         "typescript": "^2.9.2"
     },
-    "dependencies": {}
+    "devEngines": {
+        "node": ">=5.x",
+        "npm": ">=4.x"
+    },
+    "directories": {
+        "doc": "doc"
+    },
+    "homepage": "https://github.com/WMXPY/bkc#readme",
+    "license": "SEE LICENSE IN LICENSE",
+    "main": "dist/index.js",
+    "name": "bkc",
+    "nyc": {
+        "extension": [
+            ".ts"
+        ],
+        "include": [
+            "src/**/*.ts"
+        ],
+        "instrument": true,
+        "reporter": [
+            "json",
+            "text-summary"
+        ],
+        "report-dir": "coverage",
+        "require": [
+            "ts-node/register"
+        ],
+        "sourceMap": true
+    },
+    "private": false,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WMXPY/bkc.git"
+    },
+    "scripts": {
+        "build": "tsc",
+        "hint": "ghoti post -a node-normal",
+        "start": "tsc&&node dist/index.js",
+        "test": "mocha"
+    },
+    "version": "2.2.0"
 }

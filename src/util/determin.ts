@@ -3,8 +3,7 @@
  */
 
 import { internalList, internals } from "../excute/list";
-import { TCallables } from "../types/callable";
-
+import { ICallable, TCallables } from "../types/callable";
 
 export const findExternal = (val: string, externals: TCallables): number => {
     for (let i: number = 0; i < externals.length; i++) {

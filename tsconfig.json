@@ -1,20 +1,21 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "outDir": "dist",
-        "sourceMap": true,
-        "strict": true,
-        "noImplicitReturns": true,
-        "noImplicitAny": true,
-        "module": "commonjs",
-        "experimentalDecorators": true,
+        "declaration": true,
         "emitDecoratorMetadata": true,
-        "removeComments": true,
-        "target": "es5",
+        "experimentalDecorators": true,
         "lib": [
             "es2016",
             "dom"
-        ]
+        ],
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "outDir": "dist",
+        "removeComments": true,
+        "sourceMap": false,
+        "strict": true,
+        "target": "es5"
     },
     "exclude": [
         "node_modules"
