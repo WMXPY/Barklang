@@ -1,4 +1,4 @@
-# bkc
+# Barklang
 
 [![npm version](https://badge.fury.io/js/bkc.svg)](https://badge.fury.io/js/bkc)
 [![Build Status](https://travis-ci.org/WMXPY/bkc.svg?branch=master)](https://travis-ci.org/WMXPY/bkc)
