@@ -9,7 +9,12 @@ import { checkNamespace, fixOption } from '../../src/util/check';
 
 describe('test util checks', (): void => {
 
-    it('fixOption should make empty option better', (): void => {
+    it('fixOption should make empty option better (null)', (): void => {
+        // tslint:disable-next-line
+        expect(fixOption((null as any))).to.be.not.null;
+    });
+
+    it('fixOption should make empty option better (undefinded)', (): void => {
         const result: IBkcOptions = {
             vars: [],
             instants: [],

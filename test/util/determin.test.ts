@@ -12,7 +12,7 @@ describe('test util determins', (): void => {
         expect(findExternal(test, [])).to.be.equal(-1);
     });
 
-    it('determin should return function if its exist', (): void => {
+    it('determin should return external function if its exist', (): void => {
         const test = 'test';
         const func = () => {
             return null;
@@ -22,6 +22,16 @@ describe('test util determins', (): void => {
             command: 'test',
             func,
         }])).to.be.equal(func);
+    });
+
+    it('determin should return internal function if its exist', (): void => {
+        const test = 'return';
+        const func = () => {
+            return null;
+        };
+
+        // tslint:disable-next-line
+        expect(determin(test, [])).to.be.not.null;
     });
 
     it('determin should be null if function is null', (): void => {

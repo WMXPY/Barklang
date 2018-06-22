@@ -47,11 +47,7 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
             } else if (typeof arg2 === 'string') {
                 return arg1 + arg2;
             } else {
-                if (arg2) {
-                    return arg1 + arg2;
-                } else {
-                    throw new Error('illegal calculation exception');
-                }
+                return arg1 + (arg2 as any);
             }
         case '-':
             if (!checkExist(arg2)) {
@@ -137,8 +133,6 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
                 throw new Error('illegal calculation exception');
             }
     }
-
-    return arg1;
 };
 
 export default excuteExpr;

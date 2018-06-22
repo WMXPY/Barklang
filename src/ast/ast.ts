@@ -121,7 +121,7 @@ const ast = (code: string, optionsE?: IBkcOptions): TAst => {
     return splited.map((value: string): IAs => {
         let dots: string[] = value.split(' ').map((dot: string) => dot.trim());
         let command: string = dots.shift() || 'skip';
-        let type: TType;
+        let type: TType = 'error';
 
         if (command === 'var') {
             const testShift: string | undefined = dots.shift();
@@ -140,9 +140,6 @@ const ast = (code: string, optionsE?: IBkcOptions): TAst => {
                     vars.push(command);
                     type = 'assign';
                 }
-            } else {
-                command = 'error';
-                type = 'error';
             }
 
         } else if (command === 'if') {

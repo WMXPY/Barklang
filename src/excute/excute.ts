@@ -51,7 +51,7 @@ const excuteExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =>
                 try {
                     result = instants[instantIndex].func(excuteExpr(args, options, previous));
                 } catch (err) {
-                    throw new Error('Instant function excute failed');
+                    throw new Error('instant function excute failed');
                 }
                 return result;
             }
@@ -62,7 +62,7 @@ const excuteExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =>
                 try {
                     result = externalInstants[externalInstantIndex].func(excuteExpr(args, options, previous));
                 } catch (err) {
-                    throw new Error('External instant function excute failed');
+                    throw new Error('external instant function excute failed');
                 }
                 return result;
             }

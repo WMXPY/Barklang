@@ -100,6 +100,118 @@ describe('test excute code', (): void => {
         expect(excute(ast, {})).to.be.deep.equal(result);
     });
 
+    it('test variable assign', (): void => {
+        const ast: TAst = [
+            {
+                val: 'a',
+                type: 'assign',
+                args: [
+                    {
+                        type: 'num',
+                        va: 3,
+                    },
+                ],
+            },
+            {
+                val: 'return',
+                type: 'command',
+                args: [
+                    {
+                        type: 'var',
+                        va: 'a',
+                    },
+                ],
+            },
+        ];
+
+        const result: TExcute = [{
+            type: 'internal',
+            value: 'return',
+            arg: 3,
+        }];
+
+        expect(excute(ast, {})).to.be.deep.equal(result);
+    });
+
+    it('unexpect argument exception should throw when face err type', (): void => {
+        const ast: TAst = [
+            {
+                val: 'return',
+                type: 'command',
+                args: [
+                    {
+                        type: 'num',
+                        va: 4,
+                    },
+                    {
+                        type: 'exp',
+                        va: '+',
+                    },
+                    {
+                        type: 'err',
+                        va: 'err',
+                    },
+                ],
+            },
+        ];
+        expect(excute.bind(excute, ast, {})).to.be.throw('unexpect argument exception');
+    });
+
+    it('External instant function excute failed throw when external throw error', (): void => {
+        const ast: TAst = [
+            {
+                val: 'return',
+                type: 'command',
+                args: [
+                    {
+                        type: 'var',
+                        va: 'test',
+                    },
+                    {
+                        type: 'exp',
+                        va: '+',
+                    },
+                    {
+                        type: 'err',
+                        va: 'err',
+                    },
+                ],
+            },
+        ];
+        expect(excute.bind(excute, ast, {
+            instants: [{
+                command: 'test',
+                func: () => {
+                    throw new Error('any');
+                },
+            }],
+        })).to.be.throw('external instant function excute failed');
+    });
+
+    it('for loop should not be called yet', (): void => {
+        const ast: TAst = [
+            {
+                val: 'return',
+                type: 'for',
+                args: [
+                    {
+                        type: 'str',
+                        va: 'for',
+                    },
+                    {
+                        type: 'exp',
+                        va: '+',
+                    },
+                    {
+                        type: 'err',
+                        va: 'err',
+                    },
+                ],
+            },
+        ];
+        expect(excute.bind(excute, ast, {})).to.be.throw('for loop is not developed yet');
+    });
+
     it('test complex excute', (): void => {
         const ast: TAst = [
             {

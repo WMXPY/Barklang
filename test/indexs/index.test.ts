@@ -178,4 +178,20 @@ describe('test code return', (): void => {
         expect(isNaN(temp)).to.be.true;
         expect(test).to.be.equal(10);
     });
+
+    it('test external command is excuted but defined as null', (): void => {
+        let temp: number = 0;
+        const testCode = '\
+            temp len 121330\r\n\
+            temp len \'dasda45\'\r\
+            return 10\r\
+        ';
+
+        expect(bkc.bind(bkc, testCode, {
+            externals: [{
+                command: 'temp',
+                func: (null as any),
+            }],
+        })).to.be.throw('command is not defined exception');
+    });
 });
