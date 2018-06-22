@@ -11,37 +11,8 @@ import TAst from "./types/ast";
 import IBkcOptions, { TCallables } from "./types/callable";
 import TExcute from "./types/excute";
 import { checkOptionNameSpace, fixOption } from "./util/check";
+import { determin, determinReturn } from "./util/determin";
 
-const findExternal = (val: string, externals: TCallables): number => {
-    for (let i: number = 0; i < externals.length; i++) {
-        if (externals[i].command === val) {
-            return i;
-        }
-    }
-    return -1;
-};
-
-const determinReturn = (command: string): boolean => {
-    if (command === 'return') {
-        return true;
-    }
-    return false;
-};
-
-const determin = (command: string, externals: TCallables): ((arg: any) => void) | null => {
-    const internalIndex: number = internalList.indexOf(command);
-    const externalIndex: number = findExternal(command, externals);
-
-    if (internalIndex !== -1) {
-        return internals[internalIndex].func;
-    }
-
-    if (externalIndex !== -1) {
-        return externals[externalIndex].func;
-    }
-
-    return null;
-};
 
 export const bkc = (code: string, optionsE?: IBkcOptions): any => {
     const options: IBkcOptions = fixOption(optionsE);

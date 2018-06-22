@@ -46,10 +46,9 @@ const combineString = (args: IArgs[]): IArgs[] => {
             continue loop;
         }
         if (started) {
-            if (i.type === 'str' || i.type === 'var' || i.type === 'emp') {
+            if (i.type === 'str' || i.type === 'var' || i.type === 'emp' || i.type === 'num') {
                 temp.push(i.va);
             } else {
-                console.log(i);
                 throw new Error('combine failed exception');
             }
         } else {
