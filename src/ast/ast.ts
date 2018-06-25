@@ -60,7 +60,7 @@ const combineString = (args: IArgs[]): IArgs[] => {
 
 const parseArg = (arg: string): IArgs => {
     const regExpString: RegExp = /^'([A-Z]|[a-z]|[0-9])*'$/;
-    const regExpVariable: RegExp = /^([A-Z]|[a-z])([A-Z]|[a-z]|[0-9])*$/;
+    const regExpVariable: RegExp = /^(_|[A-Z]|[a-z])(_|[A-Z]|[a-z]|[0-9])*$/;
     const regExpNumber: RegExp = /^[0-9]+(.[0-9]+)?$/;
     const regExpExpression: RegExp = /^(=|\+|-|\*|\/|<|>|<=|>=|==|!=)$/;
     const regExpEmpty: RegExp = /^$/;
