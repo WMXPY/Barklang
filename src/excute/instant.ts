@@ -22,6 +22,16 @@ export const instants: TCallables = [
             throw error(101);
         },
     },
+    {
+        command: 'sum',
+        func: (value: number[]): number => {
+            let count = 0;
+            for (let i of value) {
+                count += i;
+            }
+            return count;
+        },
+    },
 ];
 
 

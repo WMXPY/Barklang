@@ -59,10 +59,11 @@ const combineString = (args: IArgs[]): IArgs[] => {
 };
 
 const parseArg = (arg: string): IArgs => {
-    const regExpString: RegExp = /^'([A-Z]|[a-z]|[0-9])*'$/;
+    const regExpString: RegExp = /(^'([A-Z]|[a-z]|[0-9])*'$)|(^"([A-Z]|[a-z]|[0-9])*"$)/;
     const regExpVariable: RegExp = /^(_|[A-Z]|[a-z])(_|[A-Z]|[a-z]|[0-9])*$/;
     const regExpNumber: RegExp = /^[0-9]+(.[0-9]+)?$/;
     const regExpExpression: RegExp = /^(=|\+|-|\*|\/|<|>|<=|>=|==|!=)$/;
+    const regExpArgument: RegExp = /^('|"|_|[A-Z]|[a-z]|[0-9])(('|"|_|[A-Z]|[a-z]|[0-9])*,('|"|_|[A-Z]|[a-z]|[0-9])+)+$/;
     const regExpEmpty: RegExp = /^$/;
 
     const regExpCombineable: RegExp = /^'([A-Z]|[a-z]|[0-9])*$/;
@@ -72,6 +73,11 @@ const parseArg = (arg: string): IArgs => {
         return {
             type: 'str',
             va: arg.substring(1, arg.length - 1),
+        };
+    } else if (regExpArgument.test(arg)) {
+        return {
+            type: 'arg',
+            va: arg.split(',').map((value) => parseArg(value)),
         };
     } else if (regExpVariable.test(arg)) {
         return {

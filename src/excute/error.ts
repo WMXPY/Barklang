@@ -7,7 +7,7 @@ export interface IErrorList { [key: number]: string; }
 
 export const errorList: IErrorList = {
     100: 'error throw failed',
-    101: 'instant excute failed',
+    101: 'instant function excute failed',
 };
 
 export const error = (code: TError): Error => {

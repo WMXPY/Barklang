@@ -3,7 +3,7 @@
  */
 
 export type TType = 'command' | 'assign' | 'if' | 'for' | 'end' | 'skip' | 'error';
-export type TArg = 'num' | 'str' | 'exp' | 'var' | 'err' | 'comstart' | 'comend' | 'emp';
+export type TArg = 'num' | 'arg' | 'str' | 'exp' | 'var' | 'err' | 'comstart' | 'comend' | 'emp';
 export type TExpr = '+' | '-' | '*' | '/' | '=' | '<' | '>' | '<=' | '>=' | '==' | '!=';
 
 export interface IArgs {

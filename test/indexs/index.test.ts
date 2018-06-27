@@ -165,18 +165,15 @@ describe('test code return', (): void => {
             temp len \'dasda45\'\r\
             return 10\r\
         ';
-        const test = bkc(testCode, {
+
+        expect(bkc.bind(bkc, testCode, {
             externals: [{
                 command: 'temp',
                 func: (arg: number) => {
                     temp += arg;
                 },
             }],
-        });
-
-        // tslint:disable-next-line
-        expect(isNaN(temp)).to.be.true;
-        expect(test).to.be.equal(10);
+        })).to.be.throw('instant function excute failed');
     });
 
     it('test external command is excuted but defined as null', (): void => {
@@ -192,6 +189,6 @@ describe('test code return', (): void => {
                 command: 'temp',
                 func: (null as any),
             }],
-        })).to.be.throw('command is not defined exception');
+        })).to.be.throw('instant function excute failed');
     });
 });

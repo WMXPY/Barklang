@@ -90,4 +90,43 @@ describe('test excuted result with initial vars', (): void => {
         })).to.be.deep.equal(result);
     });
 
+    it('test ast excute with args', (): void => {
+        const ast: TAst = [
+            {
+                val: 'return',
+                type: 'command',
+                args: [
+                    {
+                        type: 'var',
+                        va: 'sum',
+                    },
+                    {
+                        type: 'arg',
+                        va: [
+                            {
+                                type: "num",
+                                va: 1,
+                            },
+                            {
+                                type: "num",
+                                va: 5,
+                            },
+                            {
+                                type: "num",
+                                va: 6,
+                            },
+                        ],
+                    },
+                ],
+            },
+        ];
+        const result: TExcute = [{
+            type: 'internal',
+            value: 'return',
+            arg: 12,
+        }];
+
+        expect(excute(ast, {})).to.be.deep.equal(result);
+    });
+
 });
