@@ -1,15 +1,28 @@
-import { TCallables } from "../types/callable";
+import { ICallable, TCallables } from "../types/callable";
+import { error } from "./error";
 
 export const instants: TCallables = [
     {
         command: 'len',
         func: (value: string): number => {
-            return value.length;
+            if (value.length) {
+                return value.length;
+            }
+            throw error(101);
+        },
+    },
+    {
+        command: 'car',
+        func: <T>(value: T[]): T => {
+            if (typeof value === 'object') {
+                if (value[0]) {
+                    return value[0];
+                }
+            }
+            throw error(101);
         },
     },
 ];
 
 
-export const instantList: string[] = [
-    'len',
-];
+export const instantList: string[] = instants.map((value: ICallable) => value.command);
