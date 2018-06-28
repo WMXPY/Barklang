@@ -45,7 +45,9 @@ const excuteExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =>
         case 'str':
             return excuteExpr(args, options, current.va);
         case 'arg':
-            return current.va.map((value: any): any => excuteExpr([value], options, previous));
+            return current.va.map((value: any): any => {
+                return excuteExpr([value], options, previous);
+            });
         case 'var':
             let instantIndex: number = instantList.indexOf(current.va);
             if (instantIndex !== -1) {

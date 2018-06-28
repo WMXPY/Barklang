@@ -4,7 +4,7 @@
 
 export interface ICallable {
     command: string;
-    func: (arg?: any) => void;
+    func: (arg?: any) => any;
 }
 
 export interface IExternalVar {

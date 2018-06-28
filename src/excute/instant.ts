@@ -1,4 +1,5 @@
 import { ICallable, TCallables } from "../types/callable";
+import { deepCloneArray } from "../util/deepclone";
 import { error } from "./error";
 
 export const instants: TCallables = [
@@ -12,12 +13,57 @@ export const instants: TCallables = [
         },
     },
     {
+        command: 'array',
+        func: <T>(): T[] => {
+            return [];
+        },
+    },
+    {
+        command: 'push',
+        func: <T>(arg: {
+            0: T[];
+            1: T;
+        }): T[] => {
+            if (typeof arg[0] === 'object' && arg[0].length >= 0) {
+                const arr = deepCloneArray(arg[0]);
+                arr.push(arg[1]);
+                return arr;
+            }
+            throw error(101);
+        },
+    },
+    {
+        command: 'unshift',
+        func: <T>(arg: {
+            0: T[];
+            1: T;
+        }): T[] => {
+            if (typeof arg[0] === 'object' && arg[0].length >= 0) {
+                const arr = deepCloneArray(arg[0]);
+                arr.unshift(arg[1]);
+                return arr;
+            }
+            throw error(101);
+        },
+    },
+    {
         command: 'car',
         func: <T>(value: T[]): T => {
             if (typeof value === 'object') {
                 if (value[0]) {
                     return value[0];
                 }
+            }
+            throw error(101);
+        },
+    },
+    {
+        command: 'cdr',
+        func: <T>(value: T[]): T[] => {
+            if (typeof value === 'object' && value.length > 0) {
+                const arr = deepCloneArray(value);
+                arr.shift();
+                return arr;
             }
             throw error(101);
         },
