@@ -97,4 +97,51 @@ describe('test external instants excute', (): void => {
         ]);
     });
 
+    it('test array instant functions push element (multi push varibale)', (): void => {
+        const testCode = '\
+            var a array\r\n\
+            var b = qq 5\r\n\
+            a = push a,b\r\n\
+            a = push a,b\r\n\
+            a = push a,b\r\n\
+            a = push a,b\r\n\
+            return a\r\
+        ';
+
+        expect(bkc(testCode, {
+            instants: [{
+                command: 'qq',
+                func: (a: number): number => {
+                    return a;
+                },
+            }],
+        })).to.be.deep.equal([
+            5,
+            5,
+            5,
+            5,
+        ]);
+    });
+
+    it('test array instant functions get element from array', (): void => {
+        const testCode = '\
+            var a array\r\n\
+            a = push a,1\r\n\
+            a = push a,2\r\n\
+            a = push a,3\r\n\
+            a = push a,4\r\n\
+            a = get a,2\r\n\
+            return a\r\
+        ';
+
+        expect(bkc(testCode, {
+            instants: [{
+                command: 'qq',
+                func: (a: number): number => {
+                    return a;
+                },
+            }],
+        })).to.be.deep.equal(3);
+    });
+
 });

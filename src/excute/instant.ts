@@ -47,6 +47,26 @@ export const instants: TCallables = [
         },
     },
     {
+        command: 'get',
+        func: <T>(arg: {
+            0: T[];
+            1: number;
+        } | {
+            0: { [key: string]: T },
+            1: string;
+        }): T => {
+            try {
+                if (typeof arg[1] === 'number') {
+                    return (arg[0] as T[])[(arg[1] as number)];
+                } else {
+                    return (arg[0] as { [key: string]: T })[(arg[1] as string)];
+                }
+            } catch (err) {
+                throw error(101);
+            }
+        },
+    },
+    {
         command: 'car',
         func: <T>(value: T[]): T => {
             if (typeof value === 'object') {
