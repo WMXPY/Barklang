@@ -28,7 +28,7 @@
         "doc": "doc"
     },
     "homepage": "https://github.com/WMXPY/Barklang#readme",
-    "license": "SEE LICENSE IN LICENSE",
+    "license": "MIT",
     "main": "dist/index.js",
     "name": "bkc",
     "nyc": {
@@ -60,5 +60,5 @@
         "start": "tsc&&node dist/index.js",
         "test": "mocha"
     },
-    "version": "2.3.0"
+    "version": "3.0.0"
 }
