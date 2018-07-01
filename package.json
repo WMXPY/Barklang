@@ -28,6 +28,10 @@
         "doc": "doc"
     },
     "homepage": "https://github.com/WMXPY/Barklang#readme",
+    "keywords": [
+        "javascript",
+        "auto"
+    ],
     "license": "MIT",
     "main": "dist/index.js",
     "name": "bkc",
