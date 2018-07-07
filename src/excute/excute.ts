@@ -2,16 +2,15 @@
  * @fileoverview excute target ast with external function
  */
 
-import { deepCloneArray } from "../util/deepclone";
-import excuteExprValue from './expr';
-
-import { internalList } from "./list";
-
 import TAst, { IArgs, IAs } from "../types/ast";
 import { IBkcOptions, ICallable, TCallables } from "../types/callable";
 import TExcute, { IExc, IVar, TVars } from "../types/excute";
 import { fixOption } from "../util/check";
+import { deepCloneArray } from "../util/deepclone";
+import { error, ERROR_CODE } from "./error";
+import excuteExprValue from './expr';
 import { instantList, instants } from "./instant";
+import { internalList } from "./list";
 
 const findVar = (val: string, vars: TVars): number => {
     for (let i: number = 0; i < vars.length; i++) {
@@ -55,7 +54,7 @@ const excuteExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =>
                 try {
                     result = instants[instantIndex].func(excuteExpr(args, options, previous));
                 } catch (err) {
-                    throw new Error('instant function excute failed');
+                    throw error(ERROR_CODE.INSTANT_FUNCTION_EXCUTE_FAILED);
                 }
                 return result;
             }
@@ -66,7 +65,7 @@ const excuteExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =>
                 try {
                     result = externalInstants[externalInstantIndex].func(excuteExpr(args, options, previous));
                 } catch (err) {
-                    throw new Error('external instant function excute failed');
+                    throw error(ERROR_CODE.INSTANT_EXTERNAL_FUNCTION_EXCUTE_FAILED);
                 }
                 return result;
             }
@@ -74,7 +73,7 @@ const excuteExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =>
             let varIndex: number = findVar(current.va, vars);
 
             if (varIndex === -1) {
-                throw new Error('undefined variable exception');
+                throw error(ERROR_CODE.UNDEFINED_VARIABLE);
             } else {
                 return excuteExpr(args, options, vars[varIndex].value);
             }

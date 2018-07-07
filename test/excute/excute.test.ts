@@ -185,7 +185,7 @@ describe('test excute code', (): void => {
                     throw new Error('any');
                 },
             }],
-        })).to.be.throw('external instant function excute failed');
+        })).to.be.throw('102: Instant instant function excute failed');
     });
 
     it('for loop should not be called yet', (): void => {

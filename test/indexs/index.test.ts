@@ -173,7 +173,7 @@ describe('test code return', (): void => {
                     temp += arg;
                 },
             }],
-        })).to.be.throw('instant function excute failed');
+        })).to.be.throw('101: Instant function excute failed');
     });
 
     it('test external command is excuted but defined as null', (): void => {
@@ -189,6 +189,6 @@ describe('test code return', (): void => {
                 command: 'temp',
                 func: (null as any),
             }],
-        })).to.be.throw('instant function excute failed');
+        })).to.be.throw('101: Instant function excute failed');
     });
 });
