@@ -158,14 +158,16 @@ const ast = (code: string, optionsE?: IBkcOptions): TAst => {
             type = 'assign';
         } else if (command === 'skip') {
             type = 'skip';
+        } else if (command === '#') {// COMMENTS
+            type = 'skip';
         } else {
             type = 'command';
         }
 
         const re: IAs = {
             type,
-            val: command,
-            args: combineString(dots.map(parseArg)),
+            val: (type === 'skip') ? 'skip' : command,
+            args: (type === 'skip') ? [] : combineString(dots.map(parseArg)),
         };
 
         return re;

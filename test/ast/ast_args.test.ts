@@ -82,4 +82,5 @@ describe('test AST generater with args', (): void => {
         ];
         expect(testAST).to.be.deep.equal(expectedAST);
     });
+
 });
