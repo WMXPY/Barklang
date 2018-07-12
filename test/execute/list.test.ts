@@ -4,7 +4,7 @@
 
 import { expect } from 'chai';
 
-import { internals } from '../../src/excute/list';
+import { internals } from '../../src/execute/list';
 import { monkConsoleLog, monkConsoleWarn } from '../util/monk';
 
 describe('test internal functions', (): void => {

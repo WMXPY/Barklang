@@ -1,14 +1,14 @@
 /**
- * @fileoverview excute target ast with external function
+ * @fileoverview execute target ast with external function
  */
 
 import TAst, { IArgs, IAs } from "../types/ast";
 import { IBkcOptions, ICallable, TCallables } from "../types/callable";
-import TExcute, { IExc, IVar, TVars } from "../types/excute";
+import TExecute, { IExc, IVar, TVars } from "../types/execute";
 import { fixOption } from "../util/check";
 import { deepCloneArray } from "../util/deepclone";
 import { error, ERROR_CODE } from "./error";
-import excuteExprValue from './expr';
+import executeExprValue from './expr';
 import { instantList, instants } from "./instant";
 import { internalList } from "./list";
 
@@ -21,7 +21,7 @@ const findVar = (val: string, vars: TVars): number => {
     return -1;
 };
 
-const excuteExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any => {
+const executeExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any => {
     const current: IArgs | undefined = args.shift();
 
     const vars: TVars = (options.vars as TVars);
@@ -35,26 +35,26 @@ const excuteExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =>
         case 'exp':
             switch (current.va) {
                 case '=':
-                    return excuteExpr(args, options, previous);
+                    return executeExpr(args, options, previous);
                 default:
-                    const value: string | number = excuteExprValue(current.va, previous, excuteExpr(args, options));
-                    return excuteExpr(args, options, value);
+                    const value: string | number = executeExprValue(current.va, previous, executeExpr(args, options));
+                    return executeExpr(args, options, value);
             }
         case 'num':
         case 'str':
-            return excuteExpr(args, options, current.va);
+            return executeExpr(args, options, current.va);
         case 'arg':
             return current.va.map((value: any): any => {
-                return excuteExpr([value], options, previous);
+                return executeExpr([value], options, previous);
             });
         case 'var':
             let instantIndex: number = instantList.indexOf(current.va);
             if (instantIndex !== -1) {
                 let result;
                 try {
-                    result = instants[instantIndex].func(excuteExpr(args, options, previous));
+                    result = instants[instantIndex].func(executeExpr(args, options, previous));
                 } catch (err) {
-                    throw error(ERROR_CODE.INSTANT_FUNCTION_EXCUTE_FAILED);
+                    throw error(ERROR_CODE.INSTANT_FUNCTION_execute_FAILED);
                 }
                 return result;
             }
@@ -63,9 +63,9 @@ const excuteExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =>
             if (externalInstantIndex !== -1) {
                 let result;
                 try {
-                    result = externalInstants[externalInstantIndex].func(excuteExpr(args, options, previous));
+                    result = externalInstants[externalInstantIndex].func(executeExpr(args, options, previous));
                 } catch (err) {
-                    throw error(ERROR_CODE.INSTANT_EXTERNAL_FUNCTION_EXCUTE_FAILED);
+                    throw error(ERROR_CODE.INSTANT_EXTERNAL_FUNCTION_execute_FAILED);
                 }
                 return result;
             }
@@ -75,19 +75,19 @@ const excuteExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =>
             if (varIndex === -1) {
                 throw error(ERROR_CODE.UNDEFINED_VARIABLE);
             } else {
-                return excuteExpr(args, options, vars[varIndex].value);
+                return executeExpr(args, options, vars[varIndex].value);
             }
         case 'emp':
-            return excuteExpr(args, options, previous);
+            return executeExpr(args, options, previous);
         case 'err':
-            throw new Error('unexpect argument exception');
+            throw new Error('unexpected argument exception');
     }
 
 };
 
-const excuteRecursive = (astE: TAst, reE: TExcute, options: IBkcOptions): TExcute => {
+const executeRecursive = (astE: TAst, reE: TExecute, options: IBkcOptions): TExecute => {
     const ast: TAst = deepCloneArray(astE);
-    const re: TExcute = deepCloneArray(reE);
+    const re: TExecute = deepCloneArray(reE);
     const current: IAs | undefined = ast.shift();
 
     const vars: IVar[] = (options.vars as IVar[]);
@@ -99,7 +99,7 @@ const excuteRecursive = (astE: TAst, reE: TExcute, options: IBkcOptions): TExcut
     loop: switch (current.type) {
         case 'if':
 
-            if (!Boolean(excuteExpr(current.args, options))) {
+            if (!Boolean(executeExpr(current.args, options))) {
                 for (let i of ast) {
                     if (i.type !== 'end') {
                         i.type = 'skip';
@@ -116,11 +116,11 @@ const excuteRecursive = (astE: TAst, reE: TExcute, options: IBkcOptions): TExcut
 
             let varIndex: number = findVar(current.val, vars);
             if (varIndex !== -1) {
-                vars[varIndex].value = excuteExpr(current.args, options);
+                vars[varIndex].value = executeExpr(current.args, options);
             } else {
                 const currentVar: IVar = {
                     name: current.val,
-                    value: excuteExpr(current.args, options),
+                    value: executeExpr(current.args, options),
                 };
 
                 vars.push(currentVar);
@@ -131,7 +131,7 @@ const excuteRecursive = (astE: TAst, reE: TExcute, options: IBkcOptions): TExcut
                 const currentCommand: IExc = {
                     type: 'internal',
                     value: current.val,
-                    arg: excuteExpr(current.args, options),
+                    arg: executeExpr(current.args, options),
                 };
 
                 re.push(currentCommand);
@@ -139,18 +139,18 @@ const excuteRecursive = (astE: TAst, reE: TExcute, options: IBkcOptions): TExcut
 
             break;
         case 'error':
-            throw new Error('unexpect namespace exception');
+            throw new Error('unexpected namespace exception');
         case 'skip':
         default:
             break;
     }
 
-    return excuteRecursive(ast, re, options);
+    return executeRecursive(ast, re, options);
 };
 
-const excute = (ast: TAst, optionsE: IBkcOptions): TExcute => {
+const execute = (ast: TAst, optionsE: IBkcOptions): TExecute => {
     const options: IBkcOptions = fixOption(optionsE);
-    return excuteRecursive(ast, [], options);
+    return executeRecursive(ast, [], options);
 };
 
-export default excute;
+export default execute;

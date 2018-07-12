@@ -1,14 +1,14 @@
 /**
- * @fileoverview test code excute
+ * @fileoverview test code execute
  */
 
 import { expect } from 'chai';
 
-import excute from '../../src/excute/excute';
+import execute from '../../src/execute/execute';
 import TAst from '../../src/types/ast';
-import TExcute from '../../src/types/excute';
+import TExecute from '../../src/types/execute';
 
-describe('test excuted result accessiable', (): void => {
+describe('test executed result accessible', (): void => {
 
     it('test variable assign', (): void => {
         const ast: TAst = [
@@ -23,18 +23,18 @@ describe('test excuted result accessiable', (): void => {
                 ],
             },
         ];
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: 1,
         }];
 
-        expect(excute(ast, {})).to.be.deep.equal(result);
+        expect(execute(ast, {})).to.be.deep.equal(result);
     });
 
 });
 
-describe('test excute code', (): void => {
+describe('test execute code', (): void => {
 
     it('test variable assign', (): void => {
         const ast: TAst = [
@@ -60,16 +60,16 @@ describe('test excute code', (): void => {
             },
         ];
 
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: 3,
         }];
 
-        expect(excute(ast, {})).to.be.deep.equal(result);
+        expect(execute(ast, {})).to.be.deep.equal(result);
     });
 
-    it('test expr excute', (): void => {
+    it('test expr execute', (): void => {
         const ast: TAst = [
             {
                 val: 'return',
@@ -91,13 +91,13 @@ describe('test excute code', (): void => {
             },
         ];
 
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: '4test',
         }];
 
-        expect(excute(ast, {})).to.be.deep.equal(result);
+        expect(execute(ast, {})).to.be.deep.equal(result);
     });
 
     it('test variable assign', (): void => {
@@ -124,16 +124,16 @@ describe('test excute code', (): void => {
             },
         ];
 
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: 3,
         }];
 
-        expect(excute(ast, {})).to.be.deep.equal(result);
+        expect(execute(ast, {})).to.be.deep.equal(result);
     });
 
-    it('unexpect argument exception should throw when face err type', (): void => {
+    it('unexpected argument exception should throw when face err type', (): void => {
         const ast: TAst = [
             {
                 val: 'return',
@@ -154,10 +154,10 @@ describe('test excute code', (): void => {
                 ],
             },
         ];
-        expect(excute.bind(excute, ast, {})).to.be.throw('unexpect argument exception');
+        expect(execute.bind(execute, ast, {})).to.be.throw('unexpected argument exception');
     });
 
-    it('External instant function excute failed throw when external throw error', (): void => {
+    it('External instant function execute failed throw when external throw error', (): void => {
         const ast: TAst = [
             {
                 val: 'return',
@@ -178,14 +178,14 @@ describe('test excute code', (): void => {
                 ],
             },
         ];
-        expect(excute.bind(excute, ast, {
+        expect(execute.bind(execute, ast, {
             instants: [{
                 command: 'test',
                 func: () => {
                     throw new Error('any');
                 },
             }],
-        })).to.be.throw('102: Instant instant function excute failed');
+        })).to.be.throw('102: Instant instant function execute failed');
     });
 
     it('for loop should not be called yet', (): void => {
@@ -209,10 +209,10 @@ describe('test excute code', (): void => {
                 ],
             },
         ];
-        expect(excute.bind(excute, ast, {})).to.be.throw('for loop is not developed yet');
+        expect(execute.bind(execute, ast, {})).to.be.throw('for loop is not developed yet');
     });
 
-    it('test complex excute', (): void => {
+    it('test complex execute', (): void => {
         const ast: TAst = [
             {
                 val: 'return',
@@ -250,13 +250,13 @@ describe('test excute code', (): void => {
             },
         ];
 
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: '4test32',
         }];
 
-        expect(excute(ast, {})).to.be.deep.equal(result);
+        expect(execute(ast, {})).to.be.deep.equal(result);
     });
 
     it('test variable assign and recall', (): void => {
@@ -325,13 +325,13 @@ describe('test excute code', (): void => {
             },
         ];
 
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: '4test56',
         }];
 
-        expect(excute(ast, {})).to.be.deep.equal(result);
+        expect(execute(ast, {})).to.be.deep.equal(result);
     });
 
 });

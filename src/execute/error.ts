@@ -7,8 +7,8 @@ export interface IErrorList { [key: number]: string; }
 
 export enum ERROR_CODE {
     ERROR_THROW_FAILED = 100,
-    INSTANT_FUNCTION_EXCUTE_FAILED = 101,
-    INSTANT_EXTERNAL_FUNCTION_EXCUTE_FAILED = 102,
+    INSTANT_FUNCTION_execute_FAILED = 101,
+    INSTANT_EXTERNAL_FUNCTION_execute_FAILED = 102,
 
     UNDEFINED_VARIABLE = 201,
 
@@ -17,8 +17,8 @@ export enum ERROR_CODE {
 
 export const errorList: IErrorList = {
     100: 'Error throw failed',
-    101: 'Instant function excute failed',
-    102: 'Instant instant function excute failed',
+    101: 'Instant function execute failed',
+    102: 'Instant instant function execute failed',
     201: 'Undefined variable exception',
     900: 'Unknown error code',
 };

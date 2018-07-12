@@ -6,7 +6,7 @@ import { expect } from 'chai';
 
 import bkc from '../../src/index';
 
-describe('test code excute with namespace error', (): void => {
+describe('test code execute with namespace error', (): void => {
 
     it('test var assign exception (instant)', (): void => {
         const testCode = '\
@@ -15,7 +15,7 @@ describe('test code excute with namespace error', (): void => {
             return len\r\
         ';
 
-        expect(bkc.bind(bkc, testCode)).to.be.throw('unexpect namespace exception');
+        expect(bkc.bind(bkc, testCode)).to.be.throw('unexpected namespace exception');
     });
 
     it('test var assign exception (reserved)', (): void => {
@@ -25,7 +25,7 @@ describe('test code excute with namespace error', (): void => {
             return var\r\
         ';
 
-        expect(bkc.bind(bkc, testCode)).to.be.throw('unexpect namespace exception');
+        expect(bkc.bind(bkc, testCode)).to.be.throw('unexpected namespace exception');
     });
 
     it('test var assign exception (internal)', (): void => {
@@ -35,7 +35,7 @@ describe('test code excute with namespace error', (): void => {
             return return\r\
         ';
 
-        expect(bkc.bind(bkc, testCode)).to.be.throw('unexpect namespace exception');
+        expect(bkc.bind(bkc, testCode)).to.be.throw('unexpected namespace exception');
     });
 
     it('test var assign exception (external)', (): void => {
@@ -52,7 +52,7 @@ describe('test code excute with namespace error', (): void => {
                     return arg;
                 },
             }],
-        })).to.be.throw('unexpect namespace exception');
+        })).to.be.throw('unexpected namespace exception');
     });
 
     it('test var assign exception (external var)', (): void => {
@@ -73,7 +73,7 @@ describe('test code excute with namespace error', (): void => {
                     return arg;
                 },
             }],
-        })).to.be.throw('unexpect namespace exception');
+        })).to.be.throw('unexpected namespace exception');
     });
 
     it('test var assign exception should not throw if other name, empty option', (): void => {
@@ -83,7 +83,7 @@ describe('test code excute with namespace error', (): void => {
             return sttt\r\
         ';
 
-        expect(bkc.bind(bkc, testCode, {})).to.be.not.throw('unexpect namespace exception');
+        expect(bkc.bind(bkc, testCode, {})).to.be.not.throw('unexpected namespace exception');
     });
 
 
@@ -94,7 +94,7 @@ describe('test code excute with namespace error', (): void => {
             return hello\r\
         ';
 
-        expect(bkc.bind(bkc, testCode)).to.be.not.throw('unexpect namespace exception');
+        expect(bkc.bind(bkc, testCode)).to.be.not.throw('unexpected namespace exception');
     });
 
 });

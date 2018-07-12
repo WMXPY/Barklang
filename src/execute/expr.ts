@@ -1,5 +1,5 @@
 /**
- * @fileoverview excute target ast with external function
+ * @fileoverview execute target ast with external function
  */
 
 import { TExpr } from "../types/ast";
@@ -31,10 +31,10 @@ export const checkExist = (anything: any): boolean => {
     return true;
 };
 
-const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number): string | number => {
+const executeExpr = (exprE: string, arg1: string | number, arg2?: string | number): string | number => {
     const expr: TExpr | null = checkExpr(exprE);
     if (!expr) {
-        throw new Error('unvalid expression exception');
+        throw new Error('invalid expression exception');
     }
 
     switch (expr) {
@@ -135,4 +135,4 @@ const excuteExpr = (exprE: string, arg1: string | number, arg2?: string | number
     }
 };
 
-export default excuteExpr;
+export default executeExpr;

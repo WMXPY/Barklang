@@ -1,14 +1,14 @@
 /**
- * @fileoverview test code excute with if statement
+ * @fileoverview test code execute with if statement
  */
 
 import { expect } from 'chai';
 
-import excute from '../../src/excute/excute';
+import execute from '../../src/execute/execute';
 import TAst from '../../src/types/ast';
-import TExcute from '../../src/types/excute';
+import TExecute from '../../src/types/execute';
 
-describe('test excuted result accessiable with if statement', (): void => {
+describe('test executed result accessible with if statement', (): void => {
 
     it('test if return true', (): void => {
         const ast: TAst = [
@@ -38,13 +38,13 @@ describe('test excuted result accessiable with if statement', (): void => {
                 args: [],
             },
         ];
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: 1,
         }];
 
-        expect(excute(ast, {})).to.be.deep.equal(result);
+        expect(execute(ast, {})).to.be.deep.equal(result);
     });
 
     it('test if return false', (): void => {
@@ -85,13 +85,13 @@ describe('test excuted result accessiable with if statement', (): void => {
                 ],
             },
         ];
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: 9,
         }];
 
-        expect(excute(ast, {})).to.be.deep.equal(result);
+        expect(execute(ast, {})).to.be.deep.equal(result);
     });
 
     it('test if return error', (): void => {
@@ -128,7 +128,7 @@ describe('test excuted result accessiable with if statement', (): void => {
             },
         ];
 
-        expect(excute.bind(excute, ast)).to.be.throw('end command not matched exception');
+        expect(execute.bind(execute, ast)).to.be.throw('end command not matched exception');
     });
 
     it('test if var assign', (): void => {
@@ -180,13 +180,13 @@ describe('test excuted result accessiable with if statement', (): void => {
             },
         ];
 
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: 7,
         }];
 
-        expect(excute(ast, {})).to.be.deep.equal(result);
+        expect(execute(ast, {})).to.be.deep.equal(result);
     });
 
 });

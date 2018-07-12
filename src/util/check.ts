@@ -2,11 +2,11 @@
  * @fileoverview check namespace
  */
 
-import { instantList } from "../excute/instant";
-import { internalList, reservedWordList } from "../excute/list";
+import { instantList } from "../execute/instant";
+import { internalList, reservedWordList } from "../execute/list";
 import { IBkcOptions, ICallable, INamespaceResponse, TCallables, TNamespaceResponse } from "../types/callable";
-import { IVar, TVars } from "../types/excute";
-import { deepCloneObject } from "../util/deepclone";
+import { IVar, TVars } from "../types/execute";
+import { deepCloneObject } from "./deepclone";
 
 export const checkOptionNameSpace = (options: IBkcOptions): TNamespaceResponse => {
     const vars: TVars = (options.vars as TVars);

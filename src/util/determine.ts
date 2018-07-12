@@ -1,9 +1,9 @@
 /**
- * @fileoverview ditermin functions
+ * @fileoverview determine functions
  */
 
-import { internalList, internals } from "../excute/list";
-import { ICallable, TCallables } from "../types/callable";
+import { internalList, internals } from "../execute/list";
+import { TCallables } from "../types/callable";
 
 export const findExternal = (val: string, externals: TCallables): number => {
     for (let i: number = 0; i < externals.length; i++) {
@@ -14,7 +14,7 @@ export const findExternal = (val: string, externals: TCallables): number => {
     return -1;
 };
 
-export const determinReturn = (command: string): boolean => {
+export const determineReturn = (command: string): boolean => {
     if (command === 'return') {
         return true;
     }
@@ -22,7 +22,7 @@ export const determinReturn = (command: string): boolean => {
 };
 
 
-export const determin = (command: string, externals: TCallables): ((arg: any) => void) | null => {
+export const determine = (command: string, externals: TCallables): ((arg: any) => void) | null => {
     const internalIndex: number = internalList.indexOf(command);
     const externalIndex: number = findExternal(command, externals);
 

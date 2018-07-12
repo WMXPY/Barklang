@@ -6,7 +6,7 @@ import { expect } from 'chai';
 
 import bkc from '../../src/index';
 
-describe('test external instants excute', (): void => {
+describe('test external instants execute', (): void => {
 
     it('test external instant return', (): void => {
         const testCode = '\
@@ -97,7 +97,7 @@ describe('test external instants excute', (): void => {
         ]);
     });
 
-    it('test array instant functions push element (multi push varibale)', (): void => {
+    it('test array instant functions push element (multi push variable)', (): void => {
         const testCode = '\
             var a array\r\n\
             var b = qq 5\r\n\

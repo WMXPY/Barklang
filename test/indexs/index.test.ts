@@ -41,7 +41,7 @@ describe('test code return', (): void => {
         expect(test).to.be.equal(result);
     });
 
-    it('test external command excute', (): void => {
+    it('test external command execute', (): void => {
         let temp: number = 0;
         const testCode = '\
             temp\r\n\
@@ -59,7 +59,7 @@ describe('test code return', (): void => {
         expect(temp).to.be.equal(result);
     });
 
-    it('test external command excute', (): void => {
+    it('test external command execute', (): void => {
         let temp: number = 0;
         const testCode = '\
             temp\r\n\
@@ -78,7 +78,7 @@ describe('test code return', (): void => {
         expect(test).to.be.equal(void 0);
     });
 
-    it('test external command excute with argument', (): void => {
+    it('test external command execute with argument', (): void => {
         let temp: number = 0;
         const testCode = '\
             temp 30\r\n\
@@ -98,7 +98,7 @@ describe('test code return', (): void => {
         expect(test).to.be.equal(10);
     });
 
-    it('test external command excute with instant function', (): void => {
+    it('test external command execute with instant function', (): void => {
         let temp: number = 0;
         const testCode = '\
             temp len \'121330\'\r\n\
@@ -118,7 +118,7 @@ describe('test code return', (): void => {
         expect(test).to.be.equal(10);
     });
 
-    it('test external command excute with instant function (with space)', (): void => {
+    it('test external command execute with instant function (with space)', (): void => {
         let temp: number = 0;
         const testCode = '\
             temp len \'121  330\'\r\n\
@@ -138,7 +138,7 @@ describe('test code return', (): void => {
         expect(test).to.be.equal(10);
     });
 
-    it('test external command excute with instant function (with space 2)', (): void => {
+    it('test external command execute with instant function (with space 2)', (): void => {
         let temp: number = 0;
         const testCode = '\
             temp len    \'121  330\'\r\n\
@@ -158,7 +158,7 @@ describe('test code return', (): void => {
         expect(test).to.be.equal(10);
     });
 
-    it('test external command excute with instant function (error)', (): void => {
+    it('test external command execute with instant function (error)', (): void => {
         let temp: number = 0;
         const testCode = '\
             temp len 121330\r\n\
@@ -173,10 +173,10 @@ describe('test code return', (): void => {
                     temp += arg;
                 },
             }],
-        })).to.be.throw('101: Instant function excute failed');
+        })).to.be.throw('101: Instant function execute failed');
     });
 
-    it('test external command is excuted but defined as null', (): void => {
+    it('test external command is executed but defined as null', (): void => {
         let temp: number = 0;
         const testCode = '\
             temp len 121330\r\n\
@@ -189,6 +189,6 @@ describe('test code return', (): void => {
                 command: 'temp',
                 func: (null as any),
             }],
-        })).to.be.throw('101: Instant function excute failed');
+        })).to.be.throw('101: Instant function execute failed');
     });
 });

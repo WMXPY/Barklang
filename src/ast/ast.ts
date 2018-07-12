@@ -2,15 +2,15 @@
  * @fileoverview parse code string to ast tree
  */
 
-import { instantList } from '../excute/instant';
-import { internalList, reservedWordList } from '../excute/list';
+import { instantList } from '../execute/instant';
+import { internalList, reservedWordList } from '../execute/list';
 import TAst, {
     IArgs,
     IAs,
     TType,
 } from '../types/ast';
 import { IBkcOptions, ICallable, TCallables } from '../types/callable';
-import { IVar, TVars } from '../types/excute';
+import { IVar, TVars } from '../types/execute';
 import { fixOption } from '../util/check';
 
 const combineStartedToEnd = (list: string[]): IArgs => {

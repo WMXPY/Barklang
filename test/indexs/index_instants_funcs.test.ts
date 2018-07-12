@@ -6,7 +6,7 @@ import { expect } from 'chai';
 
 import bkc from '../../src/index';
 
-describe('test internal instants complex excute', (): void => {
+describe('test internal instants complex execute', (): void => {
 
     it('test car instant function', (): void => {
         const testCode = '\

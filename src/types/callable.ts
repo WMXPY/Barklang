@@ -1,5 +1,5 @@
 /**
- * @fileoverview excute type interface
+ * @fileoverview execute type interface
  */
 
 export interface ICallable {

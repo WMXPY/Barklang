@@ -1,12 +1,12 @@
 /**
- * @fileoverview excute type interface
+ * @fileoverview execute type interface
  */
 
-export type TExcuteType = 'external' | 'internal' | 'return';
+export type TExecuteType = 'external' | 'internal' | 'return';
 export type TVarType = 'string' | 'number';
 
 export interface IExc {
-    type: TExcuteType;
+    type: TExecuteType;
     value: string;
     arg: any;
 }
@@ -17,7 +17,7 @@ export interface IVar {
     value: any;
 }
 
-type TExcute = IExc[];
+type TExecute = IExc[];
 export type TVars = IVar[];
 
-export default TExcute;
+export default TExecute;

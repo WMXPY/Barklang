@@ -4,14 +4,14 @@
  */
 
 import generateAst from "./ast/ast";
-import excute from "./excute/excute";
-import { internalList, internals } from "./excute/list";
+import execute from "./execute/execute";
+import { internalList, internals } from "./execute/list";
 
 import TAst from "./types/ast";
 import IBkcOptions, { TCallables } from "./types/callable";
-import TExcute from "./types/excute";
+import TExecute from "./types/execute";
 import { checkOptionNameSpace, fixOption } from "./util/check";
-import { determin, determinReturn } from "./util/determin";
+import { determine, determineReturn } from "./util/determine";
 
 
 export const bkc = (code: string, optionsE?: IBkcOptions): any => {
@@ -22,13 +22,13 @@ export const bkc = (code: string, optionsE?: IBkcOptions): any => {
     }
 
     const ast: TAst = generateAst(code, options);
-    const excuted: TExcute = excute(ast, options);
+    const executed: TExecute = execute(ast, options);
 
-    for (let i of excuted) {
-        if (determinReturn(i.value)) {
+    for (let i of executed) {
+        if (determineReturn(i.value)) {
             return i.arg;
         }
-        const func: ((arg: any) => void) | null = determin(i.value, (options.externals as TCallables));
+        const func: ((arg: any) => void) | null = determine(i.value, (options.externals as TCallables));
 
         if (!func) {
             throw new Error('command is not defined exception');

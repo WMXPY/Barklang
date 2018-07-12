@@ -6,9 +6,9 @@ import { expect } from 'chai';
 
 import bkc from '../../src/index';
 
-describe('test code return (comparesion)', (): void => {
+describe('test code return (compression)', (): void => {
 
-    it('test usage of comparesion expression in code', (): void => {
+    it('test usage of compression expression in code', (): void => {
         const testCode = '\
             var a 1\r\n\
             a = 3 == 2\r\
@@ -19,7 +19,7 @@ describe('test code return (comparesion)', (): void => {
         expect(test).to.be.equal(result);
     });
 
-    it('test usage of comparesion expression in code (layer compare)', (): void => {
+    it('test usage of compression expression in code (layer compare)', (): void => {
         const testCode = '\
             var a 1\r\n\
             a = 1 == 2 > 1\r\
@@ -31,7 +31,7 @@ describe('test code return (comparesion)', (): void => {
         expect(test).to.be.equal(result);
     });
 
-    it('test usage of comparesion expression in code (layer compare) - 2', (): void => {
+    it('test usage of compression expression in code (layer compare) - 2', (): void => {
         const testCode = '\
             var a 1\r\n\
             a = 3 == 2 >= 1\r\
@@ -42,7 +42,7 @@ describe('test code return (comparesion)', (): void => {
         expect(test).to.be.equal(result);
     });
 
-    it('test usage of comparesion expression in code (layer compare) - 3', (): void => {
+    it('test usage of compression expression in code (layer compare) - 3', (): void => {
         const testCode = '\
             var a 1\r\n\
             a = 3 == 2 >= 1\r\
@@ -56,7 +56,7 @@ describe('test code return (comparesion)', (): void => {
         expect(test).to.be.equal(result);
     });
 
-    it('test usage of comparesion expression in code (layer compare) - 4', (): void => {
+    it('test usage of compression expression in code (layer compare) - 4', (): void => {
         const testCode = '\
             var a 1\r\n\
             a = 3 == 2 >= 1\r\
@@ -70,7 +70,7 @@ describe('test code return (comparesion)', (): void => {
         expect(test).to.be.equal(result);
     });
 
-    it('test usage of comparesion expression in code (layer compare) - 5', (): void => {
+    it('test usage of compression expression in code (layer compare) - 5', (): void => {
         const testCode = '\
             var a 1\r\n\
             a = 3 == 2 >= 1\r\

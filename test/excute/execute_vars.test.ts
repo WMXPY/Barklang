@@ -1,14 +1,14 @@
 /**
- * @fileoverview test code excute
+ * @fileoverview test code execute
  */
 
 import { expect } from 'chai';
 
-import excute from '../../src/excute/excute';
+import execute from '../../src/execute/execute';
 import TAst from '../../src/types/ast';
-import TExcute from '../../src/types/excute';
+import TExecute from '../../src/types/execute';
 
-describe('test excuted result with initial vars', (): void => {
+describe('test executed result with initial vars', (): void => {
 
     it('test variable assign', (): void => {
         const ast: TAst = [
@@ -23,13 +23,13 @@ describe('test excuted result with initial vars', (): void => {
                 ],
             },
         ];
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: 45,
         }];
 
-        expect(excute(ast, {
+        expect(execute(ast, {
             vars: [{
                 name: 'tt',
                 value: 45,
@@ -76,13 +76,13 @@ describe('test excuted result with initial vars', (): void => {
                 ],
             },
         ];
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: 86,
         }];
 
-        expect(excute(ast, {
+        expect(execute(ast, {
             vars: [{
                 name: 'tt',
                 value: 45,
@@ -90,7 +90,7 @@ describe('test excuted result with initial vars', (): void => {
         })).to.be.deep.equal(result);
     });
 
-    it('test ast excute with args', (): void => {
+    it('test ast execute with args', (): void => {
         const ast: TAst = [
             {
                 val: 'return',
@@ -120,13 +120,13 @@ describe('test excuted result with initial vars', (): void => {
                 ],
             },
         ];
-        const result: TExcute = [{
+        const result: TExecute = [{
             type: 'internal',
             value: 'return',
             arg: 12,
         }];
 
-        expect(excute(ast, {})).to.be.deep.equal(result);
+        expect(execute(ast, {})).to.be.deep.equal(result);
     });
 
 });
