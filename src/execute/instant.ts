@@ -14,7 +14,7 @@ export const instants: TCallables = [
             if (value.length) {
                 return value.length;
             }
-            throw error(ERROR_CODE.INSTANT_FUNCTION_execute_FAILED);
+            throw error(ERROR_CODE.INSTANT_FUNCTION_EXECUTE_FAILED);
         },
     },
     {
@@ -34,7 +34,7 @@ export const instants: TCallables = [
                 arr.push(arg[1]);
                 return arr;
             }
-            throw error(ERROR_CODE.INSTANT_FUNCTION_execute_FAILED);
+            throw error(ERROR_CODE.INSTANT_FUNCTION_EXECUTE_FAILED);
         },
     },
     {
@@ -48,7 +48,7 @@ export const instants: TCallables = [
                 arr.unshift(arg[1]);
                 return arr;
             }
-            throw error(ERROR_CODE.INSTANT_FUNCTION_execute_FAILED);
+            throw error(ERROR_CODE.INSTANT_FUNCTION_EXECUTE_FAILED);
         },
     },
     {
@@ -67,7 +67,7 @@ export const instants: TCallables = [
                     return (arg[0] as { [key: string]: T })[(arg[1] as string)];
                 }
             } catch (err) {
-                throw error(ERROR_CODE.INSTANT_FUNCTION_execute_FAILED);
+                throw error(ERROR_CODE.INSTANT_FUNCTION_EXECUTE_FAILED);
             }
         },
     },
@@ -79,7 +79,7 @@ export const instants: TCallables = [
                     return value[0];
                 }
             }
-            throw error(ERROR_CODE.INSTANT_FUNCTION_execute_FAILED);
+            throw error(ERROR_CODE.INSTANT_FUNCTION_EXECUTE_FAILED);
         },
     },
     {
@@ -90,7 +90,7 @@ export const instants: TCallables = [
                 arr.shift();
                 return arr;
             }
-            throw error(ERROR_CODE.INSTANT_FUNCTION_execute_FAILED);
+            throw error(ERROR_CODE.INSTANT_FUNCTION_EXECUTE_FAILED);
         },
     },
     {

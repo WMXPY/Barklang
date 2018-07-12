@@ -54,7 +54,7 @@ const executeExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =
                 try {
                     result = instants[instantIndex].func(executeExpr(args, options, previous));
                 } catch (err) {
-                    throw error(ERROR_CODE.INSTANT_FUNCTION_execute_FAILED);
+                    throw error(ERROR_CODE.INSTANT_FUNCTION_EXECUTE_FAILED);
                 }
                 return result;
             }
@@ -65,7 +65,7 @@ const executeExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =
                 try {
                     result = externalInstants[externalInstantIndex].func(executeExpr(args, options, previous));
                 } catch (err) {
-                    throw error(ERROR_CODE.INSTANT_EXTERNAL_FUNCTION_execute_FAILED);
+                    throw error(ERROR_CODE.INSTANT_EXTERNAL_FUNCTION_EXECUTE_FAILED);
                 }
                 return result;
             }
