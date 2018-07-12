@@ -3,10 +3,10 @@
  */
 
 import { expect } from 'chai';
-
 import execute from '../../src/execute/execute';
-import TAst from '../../src/types/ast';
+import TAst, { EXPRESSION } from '../../src/types/ast';
 import TExecute from '../../src/types/execute';
+
 
 describe('test executed result accessible', (): void => {
 
@@ -81,7 +81,7 @@ describe('test execute code', (): void => {
                     },
                     {
                         type: 'exp',
-                        va: '+',
+                        va: EXPRESSION.PLUS,
                     },
                     {
                         type: 'str',
@@ -145,7 +145,7 @@ describe('test execute code', (): void => {
                     },
                     {
                         type: 'exp',
-                        va: '+',
+                        va: EXPRESSION.PLUS,
                     },
                     {
                         type: 'err',
@@ -169,7 +169,7 @@ describe('test execute code', (): void => {
                     },
                     {
                         type: 'exp',
-                        va: '+',
+                        va: EXPRESSION.PLUS,
                     },
                     {
                         type: 'err',
@@ -200,7 +200,7 @@ describe('test execute code', (): void => {
                     },
                     {
                         type: 'exp',
-                        va: '+',
+                        va: EXPRESSION.PLUS,
                     },
                     {
                         type: 'err',
@@ -224,7 +224,7 @@ describe('test execute code', (): void => {
                     },
                     {
                         type: 'exp',
-                        va: '+',
+                        va: EXPRESSION.PLUS,
                     },
                     {
                         type: 'str',
@@ -232,7 +232,7 @@ describe('test execute code', (): void => {
                     },
                     {
                         type: 'exp',
-                        va: '+',
+                        va: EXPRESSION.PLUS,
                     },
                     {
                         type: 'str',
@@ -281,7 +281,7 @@ describe('test execute code', (): void => {
                     },
                     {
                         type: 'exp',
-                        va: '+',
+                        va: EXPRESSION.PLUS,
                     },
                     {
                         type: 'var',
@@ -299,7 +299,7 @@ describe('test execute code', (): void => {
                     },
                     {
                         type: 'exp',
-                        va: '+',
+                        va: EXPRESSION.PLUS,
                     },
                     {
                         type: 'str',
@@ -307,7 +307,7 @@ describe('test execute code', (): void => {
                     },
                     {
                         type: 'exp',
-                        va: '+',
+                        va: EXPRESSION.PLUS,
                     },
                     {
                         type: 'var',

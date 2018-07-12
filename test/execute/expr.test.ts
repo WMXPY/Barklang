@@ -5,6 +5,7 @@
 import { expect } from 'chai';
 
 import executeExpr, { checkExist, checkExpr } from '../../src/execute/expr';
+import { EXPRESSION } from '../../src/types/ast';
 
 describe('test expression execution', (): void => {
 
@@ -15,34 +16,34 @@ describe('test expression execution', (): void => {
     });
 
     it('test execute calculation result (+ numbers)', (): void => {
-        const test = executeExpr('+', 5, 3);
+        const test = executeExpr(EXPRESSION.PLUS, 5, 3);
         const result = 8;
         expect(test).to.be.equal(result);
     });
 
     it('test execute calculation result (+ strings)', (): void => {
-        const test = executeExpr('+', 'hello ', 'world');
+        const test = executeExpr(EXPRESSION.PLUS, 'hello ', 'world');
         const result = 'hello world';
         expect(test).to.be.equal(result);
-        const test2 = executeExpr('+', '', 'world');
+        const test2 = executeExpr(EXPRESSION.PLUS, '', 'world');
         const result2 = 'world';
         expect(test2).to.be.equal(result2);
     });
 
     it('test execute calculation result (+ number and string)', (): void => {
-        const test = executeExpr('+', 'hello ', 4);
+        const test = executeExpr(EXPRESSION.PLUS, 'hello ', 4);
         const result = 'hello 4';
         expect(test).to.be.equal(result);
-        const test2 = executeExpr('+', 4, 'world');
+        const test2 = executeExpr(EXPRESSION.PLUS, 4, 'world');
         const result2 = '4world';
         expect(test2).to.be.equal(result2);
     });
 
     it('test execute calculation result (-)', (): void => {
-        const test = executeExpr('-', 6, 8);
+        const test = executeExpr(EXPRESSION.MINUS, 6, 8);
         const result = -2;
         expect(test).to.be.equal(result);
-        const test2 = executeExpr('-', 77, 4);
+        const test2 = executeExpr(EXPRESSION.MINUS, 77, 4);
         const result2 = 73;
         expect(test2).to.be.equal(result2);
     });
@@ -86,7 +87,7 @@ describe('test expr util functions', (): void => {
     });
 
     it('checkExpr should return expr itself when expr is one of the option', (): void => {
-        expect(checkExpr('+')).to.be.equal('+');
+        expect(checkExpr(EXPRESSION.PLUS)).to.be.equal(EXPRESSION.PLUS);
     });
 
     it('checkExist should return argument is undefined or not', (): void => {
@@ -99,11 +100,11 @@ describe('test expr util functions', (): void => {
 describe('test not enough argument exception throw', (): void => {
 
     it('should throw the exception with 1 argument only (+)', (): void => {
-        expect(executeExpr.bind(executeExpr, '+', 9)).to.be.throw('not enough argument exception');
+        expect(executeExpr.bind(executeExpr, EXPRESSION.PLUS, 9)).to.be.throw('not enough argument exception');
     });
 
     it('should throw the exception with 1 argument only (-)', (): void => {
-        expect(executeExpr.bind(executeExpr, '-', 9)).to.be.throw('not enough argument exception');
+        expect(executeExpr.bind(executeExpr, EXPRESSION.MINUS, 9)).to.be.throw('not enough argument exception');
     });
 
     it('should throw the exception with 1 argument only (*)', (): void => {
@@ -143,13 +144,13 @@ describe('test not enough argument exception throw', (): void => {
 describe('test illegal calculation exception throw', (): void => {
 
     it('should NOT throw the exception with wrong argument type (+)', (): void => {
-        expect(executeExpr.bind(executeExpr, '+', 9, 'hello')).to.be.not.throw('illegal calculation exception');
-        expect(executeExpr.bind(executeExpr, '+', 'hello', 9)).to.be.not.throw('illegal calculation exception');
+        expect(executeExpr.bind(executeExpr, EXPRESSION.PLUS, 9, 'hello')).to.be.not.throw('illegal calculation exception');
+        expect(executeExpr.bind(executeExpr, EXPRESSION.PLUS, 'hello', 9)).to.be.not.throw('illegal calculation exception');
     });
 
     it('should throw the exception with wrong argument type (-)', (): void => {
-        expect(executeExpr.bind(executeExpr, '-', 9, 'hello')).to.be.throw('illegal calculation exception');
-        expect(executeExpr.bind(executeExpr, '-', 'hello', 9)).to.be.throw('illegal calculation exception');
+        expect(executeExpr.bind(executeExpr, EXPRESSION.MINUS, 9, 'hello')).to.be.throw('illegal calculation exception');
+        expect(executeExpr.bind(executeExpr, EXPRESSION.MINUS, 'hello', 9)).to.be.throw('illegal calculation exception');
     });
 
     it('should throw the exception with wrong argument type (*)', (): void => {

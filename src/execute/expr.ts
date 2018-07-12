@@ -2,11 +2,11 @@
  * @fileoverview execute target ast with external function
  */
 
-import { TExpr } from "../types/ast";
+import { EXPRESSION, TExpr } from '../types/ast';
 
 export const checkExpr = (expr: string): TExpr | null => {
-    if (expr === '+'
-        || expr === '-'
+    if (expr === EXPRESSION.PLUS
+        || expr === EXPRESSION.MINUS
         || expr === '*'
         || expr === '/'
         || expr === '='
@@ -38,7 +38,7 @@ const executeExpr = (exprE: string, arg1: string | number, arg2?: string | numbe
     }
 
     switch (expr) {
-        case '+':
+        case EXPRESSION.PLUS:
             if (!checkExist(arg2)) {
                 throw new Error('not enough argument exception');
             }
@@ -49,7 +49,7 @@ const executeExpr = (exprE: string, arg1: string | number, arg2?: string | numbe
             } else {
                 return arg1 + (arg2 as any);
             }
-        case '-':
+        case EXPRESSION.MINUS:
             if (!checkExist(arg2)) {
                 throw new Error('not enough argument exception');
             }
@@ -132,6 +132,8 @@ const executeExpr = (exprE: string, arg1: string | number, arg2?: string | numbe
             } else {
                 throw new Error('illegal calculation exception');
             }
+        default:
+            throw new Error('illegal calculation exception');
     }
 };
 

@@ -3,15 +3,15 @@
  * @fileoverview Entry
  */
 
-import generateAst from "./ast/ast";
-import execute from "./execute/execute";
-import { internalList, internals } from "./execute/list";
+import generateAst from './ast/ast';
+import execute from './execute/execute';
+import { internalList, internals } from './execute/list';
 
-import TAst from "./types/ast";
-import IBkcOptions, { TCallables } from "./types/callable";
-import TExecute from "./types/execute";
-import { checkOptionNameSpace, fixOption } from "./util/check";
-import { determine, determineReturn } from "./util/determine";
+import TAst from './types/ast';
+import IBkcOptions, { TCallables } from './types/callable';
+import TExecute from './types/execute';
+import { checkOptionNameSpace, fixOption } from './util/check';
+import { determine, determineReturn } from './util/determine';
 
 
 export const bkc = (code: string, optionsE?: IBkcOptions): any => {

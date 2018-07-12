@@ -3,9 +3,9 @@
  * @fileoverview Instant function executer
  */
 
-import { ICallable, TCallables } from "../types/callable";
-import { deepCloneArray } from "../util/deepclone";
-import { error, ERROR_CODE } from "./error";
+import { ICallable, TCallables } from '../types/callable';
+import { deepCloneArray } from '../util/deepclone';
+import { error, ERROR_CODE } from './error';
 
 export const instants: TCallables = [
     {

@@ -2,15 +2,15 @@
  * @fileoverview execute target ast with external function
  */
 
-import TAst, { IArgs, IAs } from "../types/ast";
-import { IBkcOptions, ICallable, TCallables } from "../types/callable";
-import TExecute, { IExc, IVar, TVars } from "../types/execute";
-import { fixOption } from "../util/check";
-import { deepCloneArray } from "../util/deepclone";
-import { error, ERROR_CODE } from "./error";
+import TAst, { IArgs, IAs } from '../types/ast';
+import { IBkcOptions, ICallable, TCallables } from '../types/callable';
+import TExecute, { IExc, IVar, TVars } from '../types/execute';
+import { fixOption } from '../util/check';
+import { deepCloneArray } from '../util/deepclone';
+import { error, ERROR_CODE } from './error';
 import executeExprValue from './expr';
-import { instantList, instants } from "./instant";
-import { internalList } from "./list";
+import { instantList, instants } from './instant';
+import { internalList } from './list';
 
 const findVar = (val: string, vars: TVars): number => {
     for (let i: number = 0; i < vars.length; i++) {

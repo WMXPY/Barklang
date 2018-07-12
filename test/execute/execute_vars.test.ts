@@ -5,7 +5,7 @@
 import { expect } from 'chai';
 
 import execute from '../../src/execute/execute';
-import TAst from '../../src/types/ast';
+import TAst, { EXPRESSION } from '../../src/types/ast';
 import TExecute from '../../src/types/execute';
 
 describe('test executed result with initial vars', (): void => {
@@ -59,7 +59,7 @@ describe('test executed result with initial vars', (): void => {
                     },
                     {
                         type: 'exp',
-                        va: '+',
+                        va: EXPRESSION.PLUS,
                     },
                     {
                         type: 'var',
@@ -67,7 +67,7 @@ describe('test executed result with initial vars', (): void => {
                     },
                     {
                         type: 'exp',
-                        va: '+',
+                        va: EXPRESSION.PLUS,
                     },
                     {
                         type: 'num',
@@ -104,15 +104,15 @@ describe('test executed result with initial vars', (): void => {
                         type: 'arg',
                         va: [
                             {
-                                type: "num",
+                                type: 'num',
                                 va: 1,
                             },
                             {
-                                type: "num",
+                                type: 'num',
                                 va: 5,
                             },
                             {
-                                type: "num",
+                                type: 'num',
                                 va: 6,
                             },
                         ],

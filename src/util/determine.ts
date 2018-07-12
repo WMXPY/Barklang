@@ -2,8 +2,8 @@
  * @fileoverview determine functions
  */
 
-import { internalList, internals } from "../execute/list";
-import { TCallables } from "../types/callable";
+import { internalList, internals } from '../execute/list';
+import { TCallables } from '../types/callable';
 
 export const findExternal = (val: string, externals: TCallables): number => {
     for (let i: number = 0; i < externals.length; i++) {

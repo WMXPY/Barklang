@@ -1,4 +1,4 @@
-import { TCallables } from "../types/callable";
+import { TCallables } from '../types/callable';
 
 export const internalList: string[] = [
     'print',

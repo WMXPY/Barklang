@@ -7,8 +7,13 @@
         "comstart",
         "dasda",
         "deepclone",
+        "equalequal",
         "exp",
+        "greaterorequal",
+        "greaterthan",
         "reg",
+        "smallerorequal",
+        "smallerthan",
         "splited",
         "sttt",
         "t"

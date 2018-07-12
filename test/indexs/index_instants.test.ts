@@ -54,26 +54,26 @@ describe('test external instants execute', (): void => {
     it('test array instant functions push element', (): void => {
         const testCode = '\
             var a array\r\n\
-            a = push a,"hello"\r\n\
+            a = push a,\'hello\'\r\n\
             return a\r\
         ';
 
         expect(bkc(testCode, {})).to.be.deep.equal([
-            "hello",
+            'hello',
         ]);
     });
 
     it('test array instant functions unshift element', (): void => {
         const testCode = '\
             var a array\r\n\
-            a = push a,"world"\r\n\
-            a = unshift a,"hello"\r\n\
+            a = push a,\'world\'\r\n\
+            a = unshift a,\'hello\'\r\n\
             return a\r\
         ';
 
         expect(bkc(testCode, {})).to.be.deep.equal([
-            "hello",
-            "world",
+            'hello',
+            'world',
         ]);
     });
 
