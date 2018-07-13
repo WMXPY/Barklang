@@ -3,6 +3,7 @@
  */
 
 import { EXPRESSION, TExpr } from '../types/ast';
+import { error, ERROR_CODE } from './error';
 
 export const checkExpr = (expr: string): TExpr | null => {
     if (expr === EXPRESSION.PLUS
@@ -34,13 +35,13 @@ export const checkExist = (anything: any): boolean => {
 const executeExpr = (exprE: string, arg1: string | number, arg2?: string | number): string | number => {
     const expr: TExpr | null = checkExpr(exprE);
     if (!expr) {
-        throw new Error('invalid expression exception');
+        throw error(ERROR_CODE.INVALID_EXPRESSION);
     }
 
     switch (expr) {
         case EXPRESSION.PLUS:
             if (!checkExist(arg2)) {
-                throw new Error('not enough argument exception');
+                throw error(ERROR_CODE.NOT_ENOUGH_ARGUMENT);
             }
             if (typeof arg1 === 'string') {
                 return arg1 + arg2;
@@ -51,89 +52,89 @@ const executeExpr = (exprE: string, arg1: string | number, arg2?: string | numbe
             }
         case EXPRESSION.MINUS:
             if (!checkExist(arg2)) {
-                throw new Error('not enough argument exception');
+                throw error(ERROR_CODE.NOT_ENOUGH_ARGUMENT);
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
                 return arg1 - arg2;
             } else {
-                throw new Error('illegal calculation exception');
+                throw error(ERROR_CODE.ILLEGAL_CALCULATION);
             }
         case '*':
             if (!checkExist(arg2)) {
-                throw new Error('not enough argument exception');
+                throw error(ERROR_CODE.NOT_ENOUGH_ARGUMENT);
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
                 return arg1 * arg2;
             } else {
-                throw new Error('illegal calculation exception');
+                throw error(ERROR_CODE.ILLEGAL_CALCULATION);
             }
         case '/':
             if (!checkExist(arg2)) {
-                throw new Error('not enough argument exception');
+                throw error(ERROR_CODE.NOT_ENOUGH_ARGUMENT);
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
                 return arg1 / arg2;
             } else {
-                throw new Error('illegal calculation exception');
+                throw error(ERROR_CODE.ILLEGAL_CALCULATION);
             }
         case '=':
             return arg1;
         case '<':
             if (!checkExist(arg2)) {
-                throw new Error('not enough argument exception');
+                throw error(ERROR_CODE.NOT_ENOUGH_ARGUMENT);
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
                 return arg1 < arg2 ? 1 : 0;
             } else {
-                throw new Error('illegal calculation exception');
+                throw error(ERROR_CODE.ILLEGAL_CALCULATION);
             }
         case '>':
             if (!checkExist(arg2)) {
-                throw new Error('not enough argument exception');
+                throw error(ERROR_CODE.NOT_ENOUGH_ARGUMENT);
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
                 return arg1 > arg2 ? 1 : 0;
             } else {
-                throw new Error('illegal calculation exception');
+                throw error(ERROR_CODE.ILLEGAL_CALCULATION);
             }
         case '<=':
             if (!checkExist(arg2)) {
-                throw new Error('not enough argument exception');
+                throw error(ERROR_CODE.NOT_ENOUGH_ARGUMENT);
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
                 return arg1 <= arg2 ? 1 : 0;
             } else {
-                throw new Error('illegal calculation exception');
+                throw error(ERROR_CODE.ILLEGAL_CALCULATION);
             }
         case '>=':
             if (!checkExist(arg2)) {
-                throw new Error('not enough argument exception');
+                throw error(ERROR_CODE.NOT_ENOUGH_ARGUMENT);
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
                 return arg1 >= arg2 ? 1 : 0;
             } else {
-                throw new Error('illegal calculation exception');
+                throw error(ERROR_CODE.ILLEGAL_CALCULATION);
             }
         case '==':
             if (!checkExist(arg2)) {
-                throw new Error('not enough argument exception');
+                throw error(ERROR_CODE.NOT_ENOUGH_ARGUMENT);
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
                 return arg1 === arg2 ? 1 : 0;
             } else {
-                throw new Error('illegal calculation exception');
+                throw error(ERROR_CODE.ILLEGAL_CALCULATION);
             }
         case '!=':
             if (!checkExist(arg2)) {
-                throw new Error('not enough argument exception');
+                throw error(ERROR_CODE.NOT_ENOUGH_ARGUMENT);
             }
             if (typeof arg1 === 'number' && typeof arg2 === 'number') {
                 return arg1 !== arg2 ? 1 : 0;
             } else {
-                throw new Error('illegal calculation exception');
+                throw error(ERROR_CODE.ILLEGAL_CALCULATION);
             }
         default:
-            throw new Error('illegal calculation exception');
+            throw error(ERROR_CODE.ILLEGAL_CALCULATION);
     }
 };
 

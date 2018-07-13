@@ -12,7 +12,10 @@ export enum ERROR_CODE {
 
     UNDEFINED_VARIABLE = 201,
     STATEMENT_END_NOT_MATCHED = 250,
+    NOT_ENOUGH_ARGUMENT = 255,
+    ILLEGAL_CALCULATION = 256,
     COMMAND_IS_UNDEFINED = 260,
+    INVALID_EXPRESSION = 270,
 
     STRING_COMBINE_FAILED = 301,
     UNEXPECTED_ARGUMENT = 350,
@@ -31,7 +34,10 @@ export const errorList: IErrorList = {
     102: 'Instant instant function execute failed',
     201: 'Undefined variable exception',
     250: 'Statement end not matched exception',
+    255: 'Not enough argument exception',
+    256: 'Illegal calculation exception',
     260: 'Command is not defined exception',
+    270: 'Invalid expression exception',
     301: 'Combine failed exception',
     350: 'Unexpected argument exception',
     351: 'Namespace unavailable exception',
