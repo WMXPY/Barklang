@@ -3,7 +3,7 @@
  */
 
 import { expect } from 'chai';
-
+import { error, ERROR_CODE } from '../../src/execute/error';
 import execute from '../../src/execute/execute';
 import TAst, { EXPRESSION } from '../../src/types/ast';
 import TExecute from '../../src/types/execute';
@@ -182,7 +182,7 @@ describe('test execute code', (): void => {
             instants: [{
                 command: 'test',
                 func: () => {
-                    throw new Error('any');
+                    throw error(ERROR_CODE.ANY_ERROR_CODE);
                 },
             }],
         })).to.be.throw('102: Instant instant function execute failed');

@@ -80,7 +80,7 @@ const executeExpr = (args: IArgs[], options: IBkcOptions, previous?: any): any =
         case 'emp':
             return executeExpr(args, options, previous);
         case 'err':
-            throw new Error('unexpected argument exception');
+            throw error(ERROR_CODE.UNEXPECTED_ARGUMENT);
     }
 
 };
@@ -107,11 +107,11 @@ const executeRecursive = (astE: TAst, reE: TExecute, options: IBkcOptions): TExe
                         break loop;
                     }
                 }
-                throw new Error('end command not matched exception');
+                throw error(ERROR_CODE.STATEMENT_END_NOT_MATCHED);
             }
             break;
         case 'for':
-            throw new Error('for loop is not developed yet');
+            throw error(ERROR_CODE.FOR_LOOP_IS_NOT_AVAILABLE);
         case 'assign':
 
             let varIndex: number = findVar(current.val, vars);
@@ -139,7 +139,7 @@ const executeRecursive = (astE: TAst, reE: TExecute, options: IBkcOptions): TExe
 
             break;
         case 'error':
-            throw new Error('unexpected namespace exception');
+            throw error(ERROR_CODE.NAMESPACE_UNAVAILABLE);
         case 'skip':
         default:
             break;

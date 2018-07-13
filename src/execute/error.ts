@@ -11,6 +11,16 @@ export enum ERROR_CODE {
     INSTANT_EXTERNAL_FUNCTION_EXECUTE_FAILED = 102,
 
     UNDEFINED_VARIABLE = 201,
+    STATEMENT_END_NOT_MATCHED = 250,
+    COMMAND_IS_UNDEFINED = 260,
+
+    STRING_COMBINE_FAILED = 301,
+    UNEXPECTED_ARGUMENT = 350,
+    NAMESPACE_UNAVAILABLE = 351,
+    NAMESPACE_OCCUPIED_INITIAL = 360,
+
+    ANY_ERROR_CODE = 800,
+    FOR_LOOP_IS_NOT_AVAILABLE = 820,
 
     UNKNOWN_ERROR_CODE = 900,
 }
@@ -20,6 +30,14 @@ export const errorList: IErrorList = {
     101: 'Instant function execute failed',
     102: 'Instant instant function execute failed',
     201: 'Undefined variable exception',
+    250: 'Statement end not matched exception',
+    260: 'Command is not defined exception',
+    301: 'Combine failed exception',
+    350: 'Unexpected argument exception',
+    351: 'Namespace unavailable exception',
+    360: 'Initial namespace is occupied',
+    800: 'Any error code',
+    820: 'For loop is not available',
     900: 'Unknown error code',
 };
 

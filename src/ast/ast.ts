@@ -2,13 +2,10 @@
  * @fileoverview parse code string to ast tree
  */
 
+import { error, ERROR_CODE } from '../execute/error';
 import { instantList } from '../execute/instant';
 import { internalList, reservedWordList } from '../execute/list';
-import TAst, {
-    IArgs,
-    IAs,
-    TType,
-} from '../types/ast';
+import TAst, { IArgs, IAs, TType } from '../types/ast';
 import { IBkcOptions, ICallable, TCallables } from '../types/callable';
 import { IVar, TVars } from '../types/execute';
 import { fixOption } from '../util/check';
@@ -49,7 +46,7 @@ const combineString = (args: IArgs[]): IArgs[] => {
             if (i.type === 'str' || i.type === 'var' || i.type === 'emp' || i.type === 'num') {
                 temp.push(i.va);
             } else {
-                throw new Error('combine failed exception');
+                throw error(ERROR_CODE.STRING_COMBINE_FAILED);
             }
         } else {
             re.push(i);
