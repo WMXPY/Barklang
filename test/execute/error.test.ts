@@ -3,7 +3,7 @@
  */
 
 import { expect } from 'chai';
-import { error, ERROR_CODE } from '../../src/execute/error';
+import { error, ERROR_CODE, errorMessage } from '../../src/execute/error';
 
 describe('test error util functions', (): void => {
 
@@ -22,6 +22,6 @@ describe('test error util functions', (): void => {
 
     it('error a unknown error code should return 900 error', (): void => {
         const result = error(999);
-        expect(result.message).to.be.equal('999: Unknown error code');
+        expect(result.message).to.be.equal(errorMessage(ERROR_CODE.UNKNOWN_ERROR_CODE));
     });
 });

@@ -47,15 +47,19 @@ export const errorList: IErrorList = {
     900: 'Unknown error code',
 };
 
+export const errorMessage = (code: number): string => {
+    return code + ': ' + errorList[code];
+};
+
 export const error = (code: number): Error => {
     let newError: Error = new Error();
     if (errorList[code]) {
-        newError.message = code + ': ' + errorList[code];
+        newError.message = errorMessage(code);
         newError.name = errorList[code];
         (newError as any).code = code;
         return newError;
     }
-    newError.message = code + ': ' + errorList[ERROR_CODE.UNKNOWN_ERROR_CODE];
+    newError.message = errorMessage(ERROR_CODE.UNKNOWN_ERROR_CODE);
     newError.name = errorList[ERROR_CODE.UNKNOWN_ERROR_CODE];
     (newError as any).code = ERROR_CODE.UNKNOWN_ERROR_CODE;
     return newError;

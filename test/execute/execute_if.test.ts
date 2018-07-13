@@ -3,7 +3,7 @@
  */
 
 import { expect } from 'chai';
-
+import { ERROR_CODE, errorMessage } from '../../src/execute/error';
 import execute from '../../src/execute/execute';
 import TAst from '../../src/types/ast';
 import TExecute from '../../src/types/execute';
@@ -128,7 +128,7 @@ describe('test executed result accessible with if statement', (): void => {
             },
         ];
 
-        expect(execute.bind(execute, ast)).to.be.throw('end command not matched exception');
+        expect(execute.bind(execute, ast)).to.be.throw(errorMessage(ERROR_CODE.STATEMENT_END_NOT_MATCHED));
     });
 
     it('test if var assign', (): void => {

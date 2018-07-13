@@ -3,7 +3,7 @@
  */
 
 import { expect } from 'chai';
-import { error, ERROR_CODE } from '../../src/execute/error';
+import { error, ERROR_CODE, errorMessage } from '../../src/execute/error';
 import execute from '../../src/execute/execute';
 import TAst, { EXPRESSION } from '../../src/types/ast';
 import TExecute from '../../src/types/execute';
@@ -154,7 +154,7 @@ describe('test execute code', (): void => {
                 ],
             },
         ];
-        expect(execute.bind(execute, ast, {})).to.be.throw('unexpected argument exception');
+        expect(execute.bind(execute, ast, {})).to.be.throw(errorMessage(ERROR_CODE.UNEXPECTED_ARGUMENT));
     });
 
     it('External instant function execute failed throw when external throw error', (): void => {
@@ -209,7 +209,7 @@ describe('test execute code', (): void => {
                 ],
             },
         ];
-        expect(execute.bind(execute, ast, {})).to.be.throw('for loop is not developed yet');
+        expect(execute.bind(execute, ast, {})).to.be.throw(errorMessage(ERROR_CODE.FOR_LOOP_IS_NOT_AVAILABLE));
     });
 
     it('test complex execute', (): void => {

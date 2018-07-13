@@ -3,8 +3,8 @@
  */
 
 import { expect } from 'chai';
-
 import ast from '../../src/ast/ast';
+import { ERROR_CODE, errorMessage } from '../../src/execute/error';
 import TAst from '../../src/types/ast';
 
 describe('test AST generater (spaces)', (): void => {
@@ -483,7 +483,7 @@ describe('test AST generater (spaces)', (): void => {
             a  = 3\r\
             return a\r\
         ';
-        expect(ast.bind(ast, testCode)).to.be.throw('combine failed exception');
+        expect(ast.bind(ast, testCode)).to.be.throw(errorMessage(ERROR_CODE.STRING_COMBINE_FAILED));
     });
 
     it('test number is NOT trigger combine failed exception', (): void => {

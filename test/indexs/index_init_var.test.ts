@@ -3,7 +3,7 @@
  */
 
 import { expect } from 'chai';
-
+import { ERROR_CODE, errorMessage } from '../../src/execute/error';
 import bkc from '../../src/index';
 
 describe('test code return (init vars)', (): void => {
@@ -55,7 +55,7 @@ describe('test code return (init vars)', (): void => {
                 name: 'len',
                 value: 45,
             }],
-        })).to.be.throw('initial namespace is occupied exception');
+        })).to.be.throw(errorMessage(ERROR_CODE.NAMESPACE_OCCUPIED_INITIAL));
     });
 
     it('test name space of initial duplicated (internal)', (): void => {
@@ -69,7 +69,7 @@ describe('test code return (init vars)', (): void => {
                 name: 'print',
                 value: 45,
             }],
-        })).to.be.throw('initial namespace is occupied exception');
+        })).to.be.throw(errorMessage(ERROR_CODE.NAMESPACE_OCCUPIED_INITIAL));
     });
 
     it('test name space of initial duplicated (reserved)', (): void => {
@@ -83,7 +83,7 @@ describe('test code return (init vars)', (): void => {
                 name: 'var',
                 value: 45,
             }],
-        })).to.be.throw('initial namespace is occupied exception');
+        })).to.be.throw(errorMessage(ERROR_CODE.NAMESPACE_OCCUPIED_INITIAL));
     });
 
 });
