@@ -5,6 +5,13 @@
 import { EXPRESSION, TExpr } from '../types/ast';
 import { error, ERROR_CODE } from './error';
 
+export enum NODE_TYPES {
+    STRING = 'string',
+    NUMBER = 'number',
+    ARRAY = 'object',
+    OBJECT = 'object',
+}
+
 export const checkExpr = (expr: string): TExpr | null => {
     if (expr === EXPRESSION.PLUS
         || expr === EXPRESSION.MINUS
