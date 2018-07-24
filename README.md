@@ -6,7 +6,7 @@
 [![Gitter](https://badges.gitter.im/WMXPY/Barklang.svg)](https://gitter.im/Barklang?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![downloads](https://img.shields.io/npm/dm/bkc.svg)](https://www.npmjs.com/package/bkc)
 
-:dog: Woof!
+:dog: If there are no dogs in Heaven, then when I die I want to go where they went.
 
 bkc is a simple programming language, based on javascript. All bkc lang will run in a sandbox environment, so bkc is safe for untrust user input.
 
