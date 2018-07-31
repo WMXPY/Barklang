@@ -117,7 +117,7 @@ const parseArg = (arg: string): IArgs => {
 const ast = (code: string, optionsE?: IBkcOptions): TAst => {
     const options: IBkcOptions = fixOption(optionsE);
 
-    const regExpEnter: RegExp = /\r\n|\r|\n/;
+    const regExpEnter: RegExp = /\r\n|\r|\n|&/; // Use & sign for inline code
     const splited: string[] = code.split(regExpEnter).filter((line: string) => Boolean(line.trim())).map((line: string) => line.trim());
     const vars: string[] = [];
 
