@@ -273,7 +273,7 @@ describe('test AST generater (spaces)', (): void => {
         const testCode = '\
             var a 1\r\n\
             a = \'test\'\n\
-            a  = &&3\r\
+            a  = $$3\r\
             return a\r\
         ';
         const testAST: TAst = ast(testCode);
@@ -316,7 +316,7 @@ describe('test AST generater (spaces)', (): void => {
                     },
                     {
                         type: 'err',
-                        va: '&&3',
+                        va: '$$3',
                     },
                 ],
             },
