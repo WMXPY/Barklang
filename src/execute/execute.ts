@@ -127,7 +127,7 @@ const executeRecursive = (astE: TAst, reE: TExecute, options: IBkcOptions): TExe
             }
             break;
         case 'command':
-            if (internalList.indexOf(current.val)) {
+            if (internalList.indexOf(current.val) !== -1) {
                 const currentCommand: IExc = {
                     type: 'internal',
                     value: current.val,
