@@ -135,6 +135,14 @@ const executeRecursive = (astE: TAst, reE: TExecute, options: IBkcOptions): TExe
                 };
 
                 re.push(currentCommand);
+            } else {
+                const currentCommand: IExc = {
+                    type: 'external',
+                    value: current.val,
+                    arg: executeExpr(current.args, options),
+                };
+
+                re.push(currentCommand);
             }
 
             break;
