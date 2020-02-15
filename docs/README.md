@@ -49,7 +49,7 @@ bkc("hello 'hello world!'", [
 
 ## Documents
 
--   [Grammar and example](https://github.com/WMXPY/bkc/blob/master/doc/bkc.md)
--   [Develop](https://github.com/WMXPY/bkc/blob/master/doc/develop.md)
+-   [Grammar and example](https://github.com/WMXPY/bkc/blob/master/docs/bkc.md)
+-   [Develop](https://github.com/WMXPY/bkc/blob/master/docs/develop.md)
 
 > Created by [Ghoti-CLI](https://github.com/WMXPY/Ghoti-CLI/) 3.3.8
