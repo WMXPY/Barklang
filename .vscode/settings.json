@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "Gitter",
+        "WMXPY",
         "barklang",
         "bkc",
         "callables",
@@ -25,5 +26,6 @@
         "sudoo",
         "t",
         "untrust"
-    ]
+    ],
+    "tslint.configFile": "typescript/tslint.json"
 }
