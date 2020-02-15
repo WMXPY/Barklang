@@ -8,7 +8,8 @@
     },
     "description": ":dog: If there are no dogs in Heaven, then when I die I want to go where they went.",
     "devDependencies": {
-        "@sudoo/triforce": "^1.4.0",
+        "@sudoo/io": "^1.6.2",
+        "@sudoo/triforce": "^2.1.0",
         "ghoti-cli": "^4.1.7"
     },
     "devEngines": {

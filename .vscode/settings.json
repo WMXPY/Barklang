@@ -25,6 +25,7 @@
         "sttt",
         "sudoo",
         "t",
+        "triforce",
         "untrust"
     ],
     "tslint.configFile": "typescript/tslint.json"
