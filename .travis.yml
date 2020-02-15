@@ -1,15 +1,12 @@
 language: node_js
 
 install:
- - make install
- - npm install codecov nyc -g
+  - make install
 
 node_js:
- - '7'
- - '9'
+  - "10"
+  - "11"
+  - "12"
 
 script:
- - nyc mocha
-
-after_success:
- - codecov -f ./coverage/coverage-final.json
+  - make build

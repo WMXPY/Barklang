@@ -21,10 +21,6 @@ dev:
 build:
 	@echo "[INFO] Building for production"
 	@NODE_ENV=production $(tsc) --p $(build)
-	
-tests:
-	@echo "[INFO] Testing with Mocha"
-	@NODE_ENV=test $(mocha)
 
 cov:
 	@echo "[INFO] Testing with Nyc and Mocha"
@@ -54,6 +50,6 @@ clean-linux:
 	@rm -rf .nyc_output
 	@rm -rf coverage
 
-publish: install tests license build
+publish: install license build
 	@echo "[INFO] Publishing package"
 	@cd app && npm publish --access=public
